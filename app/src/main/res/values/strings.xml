@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Watchlist</string>
+    <string name="user_email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="valid_email">Enter a valid email address</string>
+    <string name="valid_password">Minimum 6 character required</string>
+    <string name="valid_name">Minimum 3 character required</string>
+    <string name="user_name">Name</string>
+    <string name="sign_up">Sign up</string>
+    <string name="please_wait">please wait</string>
+</resources>
