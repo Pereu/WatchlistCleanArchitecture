@@ -9,6 +9,6 @@ import dagger.Module
 interface ActivityModule {
 
 //    @Binds
-//    fun provideMessage() : String = "Clean Architecture"
+//    fun provideMessage() : String = "Clean Architecture"dd
 
 }
