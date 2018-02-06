@@ -11,7 +11,7 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.android.watchlist"
+        applicationId "com.watchlist"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -85,6 +85,9 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+
+    //AVLoadingIndicatorView
+    implementation 'com.wang.avi:library:2.1.3'
 
 
 
