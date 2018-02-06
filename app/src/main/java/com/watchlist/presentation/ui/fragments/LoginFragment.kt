@@ -48,10 +48,13 @@ class LoginFragment : BaseFragment(), LoginView {
         presenter.viewIsReady()
         fragment_login_user_email_input.onTextChanged { presenter.validEmail(it)}
         fragment_login_user_password_input.onTextChanged { presenter.validPassword(it)}
-        fragment_login_btn.setOnClickListener { presenter.login(fragment_login_user_email_input.text.toString(), fragment_login_user_password_input.text.toString() ) }
+        fragment_login_btn.setOnClickListener { presenter.login(fragment_login_user_email_input.text.toString(), fragment_login_user_password_input.text.toString(), checkInternet() ) }
         fragment_login_reg_btn.setOnClickListener { presenter.showCreateAccount(activity as AppCompatActivity, R.id.activity_login_container) }
     }
 
+    override fun showMessage(message: String) {
+        longToast(message)
+    }
     override fun showLoading() {
         progressDialog = indeterminateProgressDialog("Please wait")
     }
@@ -88,6 +91,7 @@ class LoginFragment : BaseFragment(), LoginView {
         progressDialog?.dismiss()
         it.message?.let { it1 -> longToast(it1) }
     }
+
 
     override fun nameError() {}
 

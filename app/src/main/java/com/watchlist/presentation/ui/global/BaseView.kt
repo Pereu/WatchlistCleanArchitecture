@@ -14,4 +14,5 @@ interface BaseView : MvpView {
 
     fun context(): Context
     fun activity(): AppCompatActivity
+
 }

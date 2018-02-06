@@ -22,4 +22,5 @@ interface LoginView : MvpView {
     fun showLoading()
     fun showSuccess(it: User)
     fun showError(it: Throwable)
+    fun showMessage(message: String)
 }

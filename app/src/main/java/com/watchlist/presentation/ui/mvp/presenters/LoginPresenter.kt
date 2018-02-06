@@ -48,15 +48,19 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
 
     fun isValid(): Boolean  = isEmail && isPassword
 
-    fun login(email: String, password: String) {
-        viewState.showLoading()
-        val user = UserLoginParams()
-        user.email = email
-        user.password = password
-        userInteractor.userLoginParams = user
-        userInteractor.executeLogin(FunctionSubscriber<User>()
-                .onNext { viewState.showSuccess(it) }
-                .onError { viewState.showError(it) })
+    fun login(email: String, password: String, checkInternet: Boolean) {
+        if (checkInternet) {
+            viewState.showLoading()
+            val user = UserLoginParams()
+            user.email = email
+            user.password = password
+            userInteractor.userLoginParams = user
+            userInteractor.executeLogin(FunctionSubscriber<User>()
+                    .onNext { viewState.showSuccess(it) }
+                    .onError { viewState.showError(it) })
+        } else {
+            viewState.showMessage("No internet")
+        }
     }
 
     fun showOnBoarding(activity: AppCompatActivity, container: Int) {

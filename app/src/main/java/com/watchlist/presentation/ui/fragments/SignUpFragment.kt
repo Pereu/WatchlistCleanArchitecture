@@ -51,6 +51,8 @@ class SignUpFragment : BaseFragment(), LoginView {
 
     }
 
+    override fun showMessage(message: String) {}
+
     override fun showLoading() {
         progressDialog = indeterminateProgressDialog("Please wait")
     }
