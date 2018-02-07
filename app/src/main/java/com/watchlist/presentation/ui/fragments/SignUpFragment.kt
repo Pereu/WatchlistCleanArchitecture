@@ -46,15 +46,18 @@ class SignUpFragment : BaseFragment(), LoginView {
         fragment_sign_up_user_email_input.onTextChanged { presenter.validEmail(it)}
         fragment_sign_up_user_password_input.onTextChanged { presenter.validPassword(it)}
         fragment_sign_up_user_name_input.onTextChanged { presenter.validName(it)}
-        fragment_sign_up_btn.setOnClickListener { presenter.signUp(fragment_sign_up_user_email_input.text.toString(), fragment_sign_up_user_password_input.text.toString(), fragment_sign_up_user_name_input.text.toString() ) }
+        fragment_sign_up_btn.setOnClickListener { presenter.signUp(fragment_sign_up_user_email_input.text.toString(),
+                fragment_sign_up_user_password_input.text.toString(), fragment_sign_up_user_name_input.text.toString(), checkInternet() ) }
         main_app_bar_arrow.setOnClickListener { presenter.back(activity as AppCompatActivity, this) }
 
     }
 
-    override fun showMessage(message: String) {}
+    override fun showMessage(message: String) {
+        longToast(message)
+    }
 
     override fun showLoading() {
-        progressDialog = indeterminateProgressDialog("Please wait")
+        progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
     }
     override fun blockButton() {
         fragment_sign_up_btn.block(presenter.isValid(), R.color.colorPrimaryDark, R.color.colorDisabled)

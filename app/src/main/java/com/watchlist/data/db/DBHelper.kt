@@ -1,4 +1,4 @@
-package com.watchlist.data.data_base
+package com.watchlist.data.db
 
 import com.watchlist.data.entity.UserEntity
 import io.realm.Realm

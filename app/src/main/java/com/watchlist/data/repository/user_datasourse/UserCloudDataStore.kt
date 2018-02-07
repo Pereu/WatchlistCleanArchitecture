@@ -1,6 +1,6 @@
 package com.watchlist.data.repository.user_datasourse
 
-import com.watchlist.data.data_base.DBHelper
+import com.watchlist.data.db.DBHelper
 import com.watchlist.data.entity.UserEntity
 import com.watchlist.data.network.user.UserRestApi
 import com.watchlist.domain.model_params.UserLoginParams

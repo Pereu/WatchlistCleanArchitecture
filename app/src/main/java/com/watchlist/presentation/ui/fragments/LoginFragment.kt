@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.User
 import com.watchlist.presentation.extension.block
@@ -13,9 +16,6 @@ import com.watchlist.presentation.extension.onTextChanged
 import com.watchlist.presentation.ui.global.BaseFragment
 import com.watchlist.presentation.ui.mvp.presenters.LoginPresenter
 import com.watchlist.presentation.ui.mvp.views.LoginView
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.pawegio.kandroid.longToast
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
@@ -56,7 +56,7 @@ class LoginFragment : BaseFragment(), LoginView {
         longToast(message)
     }
     override fun showLoading() {
-        progressDialog = indeterminateProgressDialog("Please wait")
+        progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
     }
     override fun blockButton() {
         fragment_login_btn.block(presenter.isValid(), R.color.colorPrimaryDark, R.color.colorDisabled)  }
@@ -91,7 +91,6 @@ class LoginFragment : BaseFragment(), LoginView {
         progressDialog?.dismiss()
         it.message?.let { it1 -> longToast(it1) }
     }
-
 
     override fun nameError() {}
 

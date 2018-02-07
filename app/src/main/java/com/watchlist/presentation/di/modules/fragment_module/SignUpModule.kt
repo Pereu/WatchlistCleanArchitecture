@@ -1,6 +1,6 @@
 package com.watchlist.presentation.di.modules.fragment_module
 
-import com.watchlist.data.data_base.DBHelper
+import com.watchlist.data.db.DBHelper
 import com.watchlist.data.entity.mapper.UserMapper
 import com.watchlist.data.executor.JobExecutor
 import com.watchlist.data.network.user.UserRestApi

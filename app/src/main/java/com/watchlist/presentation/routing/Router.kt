@@ -2,6 +2,7 @@ package com.watchlist.presentation.routing
 
 import android.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.watchlist.R
 import com.watchlist.presentation.extension.*
 
 

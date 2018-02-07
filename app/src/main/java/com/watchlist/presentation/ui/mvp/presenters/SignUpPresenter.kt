@@ -60,16 +60,21 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
         }
     }
 
-    fun signUp(mail: String, password: String, name: String) {
-        viewState.showLoading()
-        val user = UserSignUpParams()
-        user.email = mail
-        user.password = password
-        user.UserName = name
-        userInteractor.userSignUpParams = user
-        userInteractor.executeSignUp(FunctionSubscriber<User>()
-                .onNext { viewState.showSuccess(it) }
-                .onError { viewState.showError(it) })    }
+    fun signUp(mail: String, password: String, name: String, checkInternet: Boolean) {
+        if (checkInternet) {
+            viewState.showLoading()
+            val user = UserSignUpParams()
+            user.email = mail
+            user.password = password
+            user.UserName = name
+            userInteractor.userSignUpParams = user
+            userInteractor.executeSignUp(FunctionSubscriber<User>()
+                    .onNext { viewState.showSuccess(it) }
+                    .onError { viewState.showError(it) })
+        } else {
+            viewState.showMessage("No internet")
+        }
+    }
 
     fun back(activity: AppCompatActivity, fragment: SignUpFragment) {
         val router = Router(activity)
