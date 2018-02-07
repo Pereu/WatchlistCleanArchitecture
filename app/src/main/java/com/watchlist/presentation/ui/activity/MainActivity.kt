@@ -1,10 +1,11 @@
 package com.watchlist.presentation.ui.activity
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.watchlist.R
 import com.watchlist.presentation.ui.global.BaseActivity
 
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

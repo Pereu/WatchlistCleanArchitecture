@@ -1,5 +1,6 @@
 package com.watchlist.presentation.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
 import com.watchlist.presentation.extension.visible
+import com.watchlist.presentation.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 import javax.inject.Inject
 
@@ -41,6 +43,12 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         presenter.viewIsReady()
+        fragment_on_boarding_btn.setOnClickListener { goToApp() }
+    }
+
+    private fun goToApp() {
+        startActivity(Intent(activity, MainActivity::class.java))
+        activity.finish()
     }
 
     private fun initAdapter() {
