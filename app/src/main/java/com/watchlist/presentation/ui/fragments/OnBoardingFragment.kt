@@ -6,17 +6,18 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.OnBoardingMovie
+import com.watchlist.presentation.extension.visible
+import com.watchlist.presentation.ui.activity.MainActivity
 import com.watchlist.presentation.ui.adapters.OnBoardingAdapter
 import com.watchlist.presentation.ui.global.BaseFragment
 import com.watchlist.presentation.ui.mvp.presenters.OnBoardingPresenter
 import com.watchlist.presentation.ui.mvp.views.OnBoardingView
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.pawegio.kandroid.longToast
-import com.watchlist.presentation.extension.visible
-import com.watchlist.presentation.ui.activity.MainActivity
+import com.watchlist.presentation.ui.views.BaseOnScrollListener
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 import javax.inject.Inject
 
@@ -36,6 +37,8 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
 
     private var adapter: OnBoardingAdapter? = null
 
+    private lateinit var baseOnScrollListener: BaseOnScrollListener
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_on_boarding, container, false)
 
@@ -43,6 +46,7 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         presenter.viewIsReady()
+        presenter.loadMovies()
         fragment_on_boarding_btn.setOnClickListener { goToApp() }
     }
 
@@ -52,9 +56,16 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
     }
 
     private fun initAdapter() {
-        fragment_on_boarding_list.layoutManager = GridLayoutManager(activity, 2)
         adapter = OnBoardingAdapter()
+        val layoutManager = GridLayoutManager(activity, 2)
+        fragment_on_boarding_list.layoutManager = layoutManager
+        baseOnScrollListener = BaseOnScrollListener({ loadMoreItems() }, layoutManager)
+        fragment_on_boarding_list.addOnScrollListener(baseOnScrollListener)
         fragment_on_boarding_list.adapter = adapter
+    }
+
+    private fun loadMoreItems() {
+        presenter.loadMovies()
     }
 
 
@@ -63,6 +74,8 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
     }
 
     override fun showList(it: ArrayList<OnBoardingMovie>) {
+        if (it.isEmpty()) baseOnScrollListener.setAvailable(false) else baseOnScrollListener.setLoading(false)
+
         showLoading(false)
         adapter?.setList(it)
     }

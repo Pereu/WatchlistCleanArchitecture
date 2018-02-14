@@ -16,14 +16,19 @@ class OnBoardingPresenter
 @Inject
 constructor(private val movieInteractor: MovieInteractor): MvpPresenter<OnBoardingView>() {
 
+    private var take = 10
+    private var skip = 0
+
     fun viewIsReady() {
         viewState.showLoading(true)
-        movieInteractor.take = 10
-        movieInteractor.skip = 0
+    }
+
+    fun loadMovies(){
+        movieInteractor.take = take
+        movieInteractor.skip = skip
+        skip += take
         movieInteractor.buildUseCaseObservableOnBoarding(FunctionSubscriber<ArrayList<OnBoardingMovie>>()
                 .onNext { viewState.showList(it) }
                 .onError { viewState.showError(it) } )
-
     }
-
 }

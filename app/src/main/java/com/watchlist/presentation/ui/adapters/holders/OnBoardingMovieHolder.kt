@@ -8,11 +8,11 @@ import kotlinx.android.synthetic.main.item_on_boarding.view.*
 /**
  * Created by alexanderpereu on 02.02.2018.
  */
-class OnBoardingMovieHolder (view: View) : BaseViewHolder<OnBoardingMovie>(view) {
+class OnBoardingMovieHolder (private val view: View) : BaseViewHolder<OnBoardingMovie>(view) {
 
     override fun onBind(item: OnBoardingMovie) {
-        Glide.with(itemView.context)
+        Glide.with(view.context)
                 .load(item.Posters?.get(0)?.Url)
-                .into(itemView.item_on_boarding_poster)
+                .into(view.item_on_boarding_poster)
     }
 }

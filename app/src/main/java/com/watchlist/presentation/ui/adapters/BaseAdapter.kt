@@ -22,7 +22,7 @@ abstract class BaseAdapter <T, VH : BaseViewHolder<T>> : RecyclerView.Adapter<VH
     }
 
     fun setList (list: ArrayList<T>) {
-        this.list = list
+        this.list.addAll(list)
         notifyDataSetChanged()
     }
 }
