@@ -17,7 +17,7 @@ import com.watchlist.presentation.ui.adapters.OnBoardingAdapter
 import com.watchlist.presentation.ui.global.BaseFragment
 import com.watchlist.presentation.ui.mvp.presenters.OnBoardingPresenter
 import com.watchlist.presentation.ui.mvp.views.OnBoardingView
-import com.watchlist.presentation.ui.views.BaseOnScrollListener
+import com.watchlist.presentation.ui.global.BaseOnScrollListener
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 import javax.inject.Inject
 
@@ -47,10 +47,10 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         initAdapter()
         presenter.viewIsReady()
         presenter.loadMovies()
-        fragment_on_boarding_btn.setOnClickListener { goToApp() }
+        fragment_on_boarding_btn.setOnClickListener { goToHome() }
     }
 
-    private fun goToApp() {
+    private fun goToHome() {
         startActivity(Intent(activity, MainActivity::class.java))
         activity.finish()
     }
@@ -58,16 +58,16 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
     private fun initAdapter() {
         adapter = OnBoardingAdapter()
         val layoutManager = GridLayoutManager(activity, 2)
-        fragment_on_boarding_list.layoutManager = layoutManager
         baseOnScrollListener = BaseOnScrollListener({ loadMoreItems() }, layoutManager)
+        fragment_on_boarding_list.layoutManager = layoutManager
         fragment_on_boarding_list.addOnScrollListener(baseOnScrollListener)
         fragment_on_boarding_list.adapter = adapter
+
     }
 
     private fun loadMoreItems() {
         presenter.loadMovies()
     }
-
 
     override fun showLoading(b: Boolean) {
         fragment_on_boarding_progress_bar.visible = b

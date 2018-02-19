@@ -10,6 +10,7 @@ import com.watchlist.presentation.ui.fragments.SignUpFragment
 import com.watchlist.presentation.ui.mvp.views.LoginView
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.watchlist.presentation.ui.fragments.LoginFragment
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
     private var isPassword = false
 
     fun viewIsReady() {
-        viewState.blockButton()
+        if (userInteractor.isUserAlreadyExist()) viewState.showHome() else viewState.blockButton()
     }
     fun validEmail(mail: String) {
        if (mail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
@@ -46,7 +47,7 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
         }
     }
 
-    fun isValid(): Boolean  = isEmail && isPassword
+    fun isValid(): Boolean = isEmail && isPassword
 
     fun login(email: String, password: String, checkInternet: Boolean) {
         if (checkInternet) {

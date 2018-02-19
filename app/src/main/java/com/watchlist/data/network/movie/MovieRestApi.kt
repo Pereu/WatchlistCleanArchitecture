@@ -3,6 +3,7 @@ package com.watchlist.data.network.movie
 import com.watchlist.data.entity.OnBoardingEntity
 import com.watchlist.presentation.ui.fragments.LoginFragment
 import com.google.gson.Gson
+import com.watchlist.data.db.DBHelper
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -35,7 +36,7 @@ class MovieRestApi @Inject constructor()  {
         return interceptor
     }
 
-    fun getOnBoarding(take: Int, skip: Int) : Observable<ArrayList<OnBoardingEntity>> {
-        return service.getOnBoardingMovie(LoginFragment.token, take, skip)
+    fun getOnBoarding(token: String, take: Int, skip: Int) : Observable<ArrayList<OnBoardingEntity>> {
+        return service.getOnBoardingMovie(token, take, skip)
     }
 }

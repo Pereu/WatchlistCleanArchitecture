@@ -19,6 +19,10 @@ class UserInteractor @Inject constructor(threadExecutor: ThreadExecutor, postExe
 
     var userSignUpParams = UserSignUpParams()
 
+    fun isUserAlreadyExist() : Boolean {
+        return this.userRepository.isUserAlreadyExist()
+    }
+
     override fun buildUseCaseObservable(): Observable<User> {
         return this.userRepository.loginUser(userLoginParams)
     }

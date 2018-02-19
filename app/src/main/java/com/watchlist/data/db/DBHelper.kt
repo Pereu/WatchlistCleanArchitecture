@@ -3,6 +3,7 @@ package com.watchlist.data.db
 import com.watchlist.data.entity.UserEntity
 import io.realm.Realm
 import io.realm.kotlin.createObject
+import io.realm.kotlin.where
 
 /**
  * Created by alexanderpereu on 25.01.2018.
@@ -27,6 +28,22 @@ class DBHelper {
                 realm.close()
             }
         }
+
+    fun getToken() : String {
+        var token = ""
+        val realm = Realm.getDefaultInstance()
+        try {
+            realm.executeTransaction {
+                val user = realm.where<UserEntity>().findFirst() as UserEntity
+                token = user.Token
+            }
+        } catch (e: Exception) {
+            print(e)
+        } finally {
+            realm.close()
+            return token
+        }
+    }
         /*  realm.beginTransaction()
           realm.copyToRealmOrUpdate(github)
           realm.commitTransaction()

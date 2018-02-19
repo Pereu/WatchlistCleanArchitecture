@@ -1,6 +1,7 @@
 package com.watchlist.presentation.ui.fragments
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.watchlist.R
 import com.watchlist.domain.model.User
 import com.watchlist.presentation.extension.block
 import com.watchlist.presentation.extension.onTextChanged
+import com.watchlist.presentation.ui.activity.MainActivity
 import com.watchlist.presentation.ui.global.BaseFragment
 import com.watchlist.presentation.ui.mvp.presenters.LoginPresenter
 import com.watchlist.presentation.ui.mvp.views.LoginView
@@ -33,10 +35,6 @@ class LoginFragment : BaseFragment(), LoginView {
     @ProvidePresenter
     fun provideLoginPresenter(): LoginPresenter {
         return presenter
-    }
-
-    companion object {
-        var token = ""
     }
 
     private var progressDialog: ProgressDialog? = null
@@ -82,7 +80,6 @@ class LoginFragment : BaseFragment(), LoginView {
     }
 
     override fun showSuccess(it: User) {
-        token = it.Token
         progressDialog?.dismiss()
         presenter.showOnBoarding(activity as AppCompatActivity, R.id.activity_login_container)
     }
@@ -92,6 +89,10 @@ class LoginFragment : BaseFragment(), LoginView {
         it.message?.let { it1 -> longToast(it1) }
     }
 
+    override fun showHome() {
+        startActivity(Intent(activity, MainActivity::class.java))
+        activity.finish()
+    }
     override fun nameError() {}
 
     override fun nameSuccess() {}

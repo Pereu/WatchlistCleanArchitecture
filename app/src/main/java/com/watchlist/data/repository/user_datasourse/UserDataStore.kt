@@ -13,4 +13,6 @@ interface UserDataStore {
     fun userLogin (login: UserLoginParams): Observable<UserEntity>
 
     fun userSign (sign: UserSignUpParams): Observable<UserEntity>
+
+    fun isUserAlreadyExist(): Boolean
 }

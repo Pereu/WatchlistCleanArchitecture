@@ -13,4 +13,6 @@ interface UserRepository {
     fun loginUser(login: UserLoginParams): Observable<User>
 
     fun signUpUser(sign: UserSignUpParams): Observable<User>
+
+    fun isUserAlreadyExist(): Boolean
 }

@@ -19,4 +19,8 @@ class UserDataRepository @Inject constructor(private val mapper: UserMapper, pri
 
     override fun signUpUser(sign: UserSignUpParams): Observable<User> {
         return dataFactory.createCloudDataStore().userSign(sign).map({ mapper.transform(it) })    }
+
+    override fun isUserAlreadyExist(): Boolean {
+        return dataFactory.createCloudDataStore().isUserAlreadyExist()
+    }
 }

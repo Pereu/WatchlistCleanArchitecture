@@ -1,6 +1,7 @@
 package com.watchlist.presentation.ui.fragments
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.watchlist.presentation.ui.mvp.views.LoginView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
+import com.watchlist.presentation.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import javax.inject.Inject
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -97,6 +99,11 @@ class SignUpFragment : BaseFragment(), LoginView {
     override fun showError(it: Throwable) {
         progressDialog?.dismiss()
         it.message?.let { it1 -> longToast(it1) }
+    }
+
+    override fun showHome() {
+        startActivity(Intent(activity, MainActivity::class.java))
+        activity.finish()
     }
 
 }

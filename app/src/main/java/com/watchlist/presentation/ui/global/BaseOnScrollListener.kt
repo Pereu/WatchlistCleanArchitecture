@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.views
+package com.watchlist.presentation.ui.global
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView

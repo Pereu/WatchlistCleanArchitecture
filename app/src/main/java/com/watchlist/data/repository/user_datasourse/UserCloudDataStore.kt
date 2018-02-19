@@ -21,4 +21,8 @@ class UserCloudDataStore (private val restApi: UserRestApi, private val dbHelper
         return restApi.user(sign).doOnNext {
             dbHelper.saveUserCredential(it)
         }     }
-}
+
+    override fun isUserAlreadyExist(): Boolean {
+        return !dbHelper.getToken().isEmpty()
+        }
+    }
