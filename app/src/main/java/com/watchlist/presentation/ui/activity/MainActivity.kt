@@ -2,18 +2,20 @@ package com.watchlist.presentation.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.arellomobile.mvp.MvpAppCompatActivity
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.watchlist.R
 import com.watchlist.presentation.ui.adapters.BottomMenuPagerAdapter
+import com.watchlist.presentation.ui.fragments.HomeTabFragment
 import com.watchlist.presentation.ui.fragments.MainTabFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity(), AHBottomNavigation.OnTabSelectedListener {
+class MainActivity : MvpAppCompatActivity(), AHBottomNavigation.OnTabSelectedListener {
 
     private val bottomNavigationItems = ArrayList<AHBottomNavigationItem>()
-    private var adapter: BottomMenuPagerAdapter? = null
+    private lateinit var adapter: BottomMenuPagerAdapter
     private var fragment: MainTabFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity(), AHBottomNavigation.OnTabSelectedListen
         adapter = BottomMenuPagerAdapter(supportFragmentManager)
         activity_main_view_pager.adapter = adapter
 
-        fragment = adapter?.getItem(0)
+        fragment = adapter.getItem(0)
 
         with(activity_main_navigation) {
             setOnTabSelectedListener(this@MainActivity)
@@ -50,10 +52,6 @@ class MainActivity : AppCompatActivity(), AHBottomNavigation.OnTabSelectedListen
     }
 
     override fun onTabSelected(position: Int, wasSelected: Boolean): Boolean {
-        if (fragment == null) {
-            fragment = adapter?.getItem(position)
-            return true
-        }
         activity_main_view_pager.setCurrentItem(position, false)
         return true
     }

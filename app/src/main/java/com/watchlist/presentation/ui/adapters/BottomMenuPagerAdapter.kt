@@ -15,9 +15,9 @@ class BottomMenuPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     init {
         fragments.clear()
-        fragments.add(MainTabFragment.newInstance(0, "Home"))
-        fragments.add(MainTabFragment.newInstance(1, "Search"))
-        fragments.add(MainTabFragment.newInstance(2, "Account"))
+        fragments.add(MainTabFragment.newInstance(0))
+        fragments.add(MainTabFragment.newInstance(1))
+        fragments.add(MainTabFragment.newInstance(2))
     }
 
     override fun getItem(position: Int): MainTabFragment {
