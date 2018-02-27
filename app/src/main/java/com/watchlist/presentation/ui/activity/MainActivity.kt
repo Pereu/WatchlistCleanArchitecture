@@ -1,14 +1,12 @@
 package com.watchlist.presentation.ui.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.watchlist.R
 import com.watchlist.presentation.ui.adapters.BottomMenuPagerAdapter
-import com.watchlist.presentation.ui.fragments.HomeTabFragment
-import com.watchlist.presentation.ui.fragments.MainTabFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -16,7 +14,7 @@ class MainActivity : MvpAppCompatActivity(), AHBottomNavigation.OnTabSelectedLis
 
     private val bottomNavigationItems = ArrayList<AHBottomNavigationItem>()
     private lateinit var adapter: BottomMenuPagerAdapter
-    private var fragment: MainTabFragment? = null
+    private var fragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

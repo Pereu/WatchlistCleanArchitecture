@@ -2,6 +2,9 @@ package com.watchlist.presentation.ui.adapters.holders
 
 import android.view.View
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.watchlist.R
 import com.watchlist.domain.model.OnBoardingMovie
 import kotlinx.android.synthetic.main.item_on_boarding.view.*
 
@@ -13,6 +16,7 @@ class OnBoardingMovieHolder (private val view: View) : BaseViewHolder<OnBoarding
     override fun onBind(item: OnBoardingMovie) {
         Glide.with(view.context)
                 .load(item.Posters?.get(0)?.Url)
+                .apply(RequestOptions().placeholder(R.drawable.empty_poster).diskCacheStrategy(DiskCacheStrategy.RESOURCE))
                 .into(view.item_on_boarding_poster)
     }
 }

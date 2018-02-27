@@ -84,8 +84,8 @@ dependencies {
     compile "org.jetbrains.anko:anko-commons:$anko_version"
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.4.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
     //AVLoadingIndicatorView
     implementation 'com.wang.avi:library:2.1.3'
