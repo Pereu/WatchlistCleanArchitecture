@@ -23,7 +23,7 @@ constructor(private val movieInteractor: MovieInteractor): MvpPresenter<OnBoardi
         viewState.showLoading(true)
     }
 
-    fun loadMovies(){
+    fun loadMovies() {
         movieInteractor.take = take
         movieInteractor.skip = skip
         skip += take

@@ -62,7 +62,6 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         fragment_on_boarding_list.layoutManager = layoutManager
         fragment_on_boarding_list.addOnScrollListener(baseOnScrollListener)
         fragment_on_boarding_list.adapter = adapter
-
     }
 
     private fun loadMoreItems() {

@@ -12,8 +12,10 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.User
+import com.watchlist.presentation.extension.addFragment
 import com.watchlist.presentation.extension.block
 import com.watchlist.presentation.extension.onTextChanged
+import com.watchlist.presentation.extension.replaceFragment
 import com.watchlist.presentation.ui.activity.MainActivity
 import com.watchlist.presentation.ui.global.BaseFragment
 import com.watchlist.presentation.ui.mvp.presenters.LoginPresenter
@@ -52,6 +54,7 @@ class LoginFragment : BaseFragment(), LoginView {
 
     override fun showMessage(message: String) {
         longToast(message)
+
     }
     override fun showLoading() {
         progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
