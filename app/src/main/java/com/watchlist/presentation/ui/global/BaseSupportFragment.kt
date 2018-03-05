@@ -22,6 +22,7 @@ abstract class BaseSupportFragment : MvpAppCompatFragment(), HasSupportFragmentI
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
+    
 
 //    override fun fragmentInjector(): AndroidInjector<Fragment> {
 //        return childFragmentInjector
