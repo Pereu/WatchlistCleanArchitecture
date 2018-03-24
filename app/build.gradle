@@ -36,7 +36,7 @@ kapt {
 }
 
 ext {
-    support = "27.0.2"
+    support = "27.1.0"
     dagger = "2.13"
     retrofit = "2.0.2"
     moxy = "1.5.3"
@@ -92,8 +92,6 @@ dependencies {
 
     //BottomNavigation
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
-
-
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

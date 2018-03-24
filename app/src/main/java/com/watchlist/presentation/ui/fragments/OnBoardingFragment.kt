@@ -37,7 +37,7 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
 
     private var adapter: OnBoardingAdapter? = null
 
-    private lateinit var baseOnScrollListener: BaseOnScrollListener
+    private var baseOnScrollListener: BaseOnScrollListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_on_boarding, container, false)
@@ -73,7 +73,7 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
     }
 
     override fun showList(it: ArrayList<OnBoardingMovie>) {
-        if (it.isEmpty()) baseOnScrollListener.setAvailable(false) else baseOnScrollListener.setLoading(false)
+        if (it.isEmpty()) baseOnScrollListener?.setAvailable(false) else baseOnScrollListener?.setLoading(false)
 
         showLoading(false)
         adapter?.setList(it)

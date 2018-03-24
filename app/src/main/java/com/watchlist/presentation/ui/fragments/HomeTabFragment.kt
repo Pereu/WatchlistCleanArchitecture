@@ -1,27 +1,22 @@
 package com.watchlist.presentation.ui.fragments
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.watchlist.R
 import com.watchlist.domain.model.CinemaMovie
-import com.watchlist.presentation.ui.global.BaseFragment
-import com.watchlist.presentation.ui.global.BaseSupportFragment
 import com.watchlist.presentation.ui.mvp.presenters.HomePresenter
 import com.watchlist.presentation.ui.mvp.views.HomeView
-import dagger.android.AndroidInjector
 import javax.inject.Inject
 
 /**
  * Created by alexanderpereu on 20.02.2018.
  */
-class HomeTabFragment : BaseSupportFragment(), HomeView {
+class HomeTabFragment : Fragment(), HomeView {
 
 
     @Inject

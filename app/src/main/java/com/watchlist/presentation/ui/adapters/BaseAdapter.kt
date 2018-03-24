@@ -12,13 +12,13 @@ abstract class BaseAdapter <T, VH : BaseViewHolder<T>> : RecyclerView.Adapter<VH
 
     private var list: ArrayList<T> = arrayListOf()
 
-    abstract override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VH
+    abstract override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder:VH?, position: Int) {
-        val T = list.get(position)
-        holder?.onBind(T)
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        val T = list[position]
+        holder.onBind(T)
     }
 
     fun setList (list: ArrayList<T>) {

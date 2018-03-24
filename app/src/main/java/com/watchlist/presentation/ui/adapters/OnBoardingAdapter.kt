@@ -11,7 +11,7 @@ import com.watchlist.presentation.ui.adapters.holders.OnBoardingMovieHolder
  */
 class OnBoardingAdapter : BaseAdapter<OnBoardingMovie, OnBoardingMovieHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): OnBoardingMovieHolder {
-        return OnBoardingMovieHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_on_boarding, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingMovieHolder {
+        return OnBoardingMovieHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_on_boarding, parent, false))
     }
 }
