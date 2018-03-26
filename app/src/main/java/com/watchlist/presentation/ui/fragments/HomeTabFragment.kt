@@ -18,7 +18,6 @@ import javax.inject.Inject
  */
 class HomeTabFragment : Fragment(), HomeView {
 
-
     @Inject
     @InjectPresenter
     lateinit var presenter: HomePresenter

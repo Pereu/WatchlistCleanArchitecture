@@ -6,12 +6,12 @@ import android.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import com.watchlist.R
 
-
-@SuppressLint("ResourceType")
-        /**
+/**
  * Created by alexanderpereu on 22.01.2018.
  */
 
+
+@SuppressLint("ResourceType")
 fun AppCompatActivity.addFragment(fragment: Fragment, container: Int){
     val fragmentTransaction = fragmentManager.beginTransaction()
     fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, 0)
