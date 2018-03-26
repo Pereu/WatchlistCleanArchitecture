@@ -3,24 +3,22 @@ package com.watchlist.presentation.ui.fragments
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.watchlist.R
-import com.watchlist.domain.model.User
-import com.watchlist.presentation.extension.block
-import com.watchlist.presentation.extension.onTextChanged
-import com.watchlist.presentation.ui.global.BaseFragment
-import com.watchlist.presentation.ui.mvp.presenters.SignUpPresenter
-import com.watchlist.presentation.ui.mvp.views.LoginView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
+import com.watchlist.R
+import com.watchlist.domain.model.User
+import com.watchlist.presentation.extension.*
 import com.watchlist.presentation.ui.activity.MainActivity
+import com.watchlist.presentation.ui.global.BaseFragment
+import com.watchlist.presentation.ui.mvp.presenters.SignUpPresenter
+import com.watchlist.presentation.ui.mvp.views.LoginView
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-import javax.inject.Inject
 import org.jetbrains.anko.indeterminateProgressDialog
+import javax.inject.Inject
 
 /**
  * Created by alexanderpereu on 30.01.2018.
@@ -50,7 +48,7 @@ class SignUpFragment : BaseFragment(), LoginView {
         fragment_sign_up_user_name_input.onTextChanged { presenter.validName(it)}
         fragment_sign_up_btn.setOnClickListener { presenter.signUp(fragment_sign_up_user_email_input.text.toString(),
                 fragment_sign_up_user_password_input.text.toString(), fragment_sign_up_user_name_input.text.toString(), checkInternet() ) }
-        main_app_bar_arrow.setOnClickListener { presenter.back(activity as AppCompatActivity, this) }
+        main_app_bar_arrow.setOnClickListener { fragmentManager.removeFragment( this) }
 
     }
 
@@ -94,7 +92,9 @@ class SignUpFragment : BaseFragment(), LoginView {
 
     override fun showSuccess(it: User) {
         progressDialog?.dismiss()
-        presenter.showOnBoarding(activity as AppCompatActivity, R.id.activity_login_container)    }
+        fragmentManager.clearAllBackStack()
+        fragmentManager.addFragment(OnBoardingFragment(), R.id.activity_login_container)
+    }
 
     override fun showError(it: Throwable) {
         progressDialog?.dismiss()

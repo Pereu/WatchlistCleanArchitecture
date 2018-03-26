@@ -3,7 +3,6 @@ package com.watchlist.presentation.ui.fragments
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +48,7 @@ class LoginFragment : BaseFragment(), LoginView {
         fragment_login_user_email_input.onTextChanged { presenter.validEmail(it)}
         fragment_login_user_password_input.onTextChanged { presenter.validPassword(it)}
         fragment_login_btn.setOnClickListener { presenter.login(fragment_login_user_email_input.text.toString(), fragment_login_user_password_input.text.toString(), checkInternet() ) }
-        fragment_login_reg_btn.setOnClickListener { presenter.showCreateAccount(activity as AppCompatActivity, R.id.activity_login_container) }
+        fragment_login_reg_btn.setOnClickListener { fragmentManager.addFragment(SignUpFragment(), R.id.activity_login_container) }
     }
 
     override fun showMessage(message: String) {
@@ -84,7 +83,7 @@ class LoginFragment : BaseFragment(), LoginView {
 
     override fun showSuccess(it: User) {
         progressDialog?.dismiss()
-        presenter.showOnBoarding(activity as AppCompatActivity, R.id.activity_login_container)
+        fragmentManager.replaceFragment(OnBoardingFragment(), R.id.activity_login_container)
     }
 
     override fun showError(it: Throwable) {

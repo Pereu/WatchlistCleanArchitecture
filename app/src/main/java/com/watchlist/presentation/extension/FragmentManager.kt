@@ -12,8 +12,8 @@ import com.watchlist.R
 
 
 @SuppressLint("ResourceType")
-fun AppCompatActivity.addFragment(fragment: Fragment, container: Int){
-    val fragmentTransaction = fragmentManager.beginTransaction()
+fun FragmentManager.addFragment(fragment: Fragment, container: Int){
+    val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, 0)
     fragmentTransaction?.add(container, fragment)
     fragmentTransaction.addToBackStack(null)
@@ -21,32 +21,32 @@ fun AppCompatActivity.addFragment(fragment: Fragment, container: Int){
 }
 
 @SuppressLint("ResourceType")
-fun AppCompatActivity.replaceFragment(fragment: Fragment, container: Int){
-    val fragmentTransaction = fragmentManager.beginTransaction()
+fun FragmentManager.replaceFragment(fragment: Fragment, container: Int){
+    val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, 0)
     fragmentTransaction?.replace(container, fragment)
     fragmentTransaction?.commit()
 }
 
 @SuppressLint("ResourceType")
-fun AppCompatActivity.removeFragment(fragment: Fragment) {
-    val fragmentTransaction = fragmentManager.beginTransaction()
+fun FragmentManager.removeFragment(fragment: Fragment) {
+    val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.setCustomAnimations(0, R.anim.slide_out_down)
     fragmentTransaction?.remove(fragment)
     fragmentTransaction?.commit()
-    fragmentManager.popBackStack()
+    this.popBackStack()
 }
 
-fun AppCompatActivity.clearAllBackStack() {
-    (0 until fragmentManager.backStackEntryCount)
-            .map { fragmentManager.getBackStackEntryAt(it).id }
-            .forEach { fragmentManager.popBackStack(it, FragmentManager.POP_BACK_STACK_INCLUSIVE) }
+fun FragmentManager.clearAllBackStack() {
+    (0 until this.backStackEntryCount)
+            .map { this.getBackStackEntryAt(it).id }
+            .forEach { this.popBackStack(it, FragmentManager.POP_BACK_STACK_INCLUSIVE) }
 }
 
-fun AppCompatActivity.backPressed() {
-    if (fragmentManager.backStackEntryCount > 1) {
-        fragmentManager.popBackStack()
+fun FragmentManager.backPressed(activity: AppCompatActivity) {
+    if (this.backStackEntryCount > 1) {
+        this.popBackStack()
     } else {
-        finish()
+        activity.finish()
     }
 }

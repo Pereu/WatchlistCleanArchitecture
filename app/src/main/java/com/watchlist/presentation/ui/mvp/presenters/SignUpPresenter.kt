@@ -1,15 +1,11 @@
 package com.watchlist.presentation.ui.mvp.presenters
 
-import android.support.v7.app.AppCompatActivity
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.domain.model.User
 import com.watchlist.domain.model_params.UserSignUpParams
-import com.watchlist.presentation.routing.Router
-import com.watchlist.presentation.ui.fragments.OnBoardingFragment
-import com.watchlist.presentation.ui.fragments.SignUpFragment
 import com.watchlist.presentation.ui.mvp.views.LoginView
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
 
@@ -74,16 +70,5 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
         } else {
             viewState.showMessage("No internet")
         }
-    }
-
-    fun back(activity: AppCompatActivity, fragment: SignUpFragment) {
-        val router = Router(activity)
-        router.remove(fragment)
-
-    }
-
-    fun showOnBoarding(activity: AppCompatActivity, container: Int) {
-        val router = Router(activity)
-        router.addFragmentAsRoot(OnBoardingFragment(), container)
     }
 }

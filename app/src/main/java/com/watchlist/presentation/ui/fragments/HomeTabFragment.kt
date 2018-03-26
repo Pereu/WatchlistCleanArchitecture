@@ -5,27 +5,18 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.watchlist.R
 import com.watchlist.domain.model.CinemaMovie
 import com.watchlist.presentation.ui.mvp.presenters.HomePresenter
 import com.watchlist.presentation.ui.mvp.views.HomeView
-import javax.inject.Inject
 
 /**
  * Created by alexanderpereu on 20.02.2018.
  */
 class HomeTabFragment : Fragment(), HomeView {
 
-    @Inject
-    @InjectPresenter
-    lateinit var presenter: HomePresenter
 
-    @ProvidePresenter
-    fun provideHomePresenter(): HomePresenter {
-        return presenter
-    }
+    var presenter: HomePresenter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_tab_home, container, false)
@@ -34,14 +25,14 @@ class HomeTabFragment : Fragment(), HomeView {
 
     }
 
-    override fun showList(it: ArrayList<CinemaMovie>) {
+    override fun showList(list: ArrayList<CinemaMovie>) {
 
     }
 
-    override fun showLoading(b: Boolean) {
+    override fun showLoading(isLoading: Boolean) {
     }
 
-    override fun showError(it: Throwable) {
+    override fun showError(error: Throwable) {
     }
 
 }

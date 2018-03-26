@@ -15,10 +15,10 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        addFragment(LoginFragment(),  R.id.activity_login_container)
+        fragmentManager.addFragment(LoginFragment(),  R.id.activity_login_container)
     }
 
     override fun onBackPressed() {
-        backPressed()
+        fragmentManager.backPressed(this)
     }
 }
