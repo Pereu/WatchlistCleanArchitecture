@@ -2,6 +2,7 @@ package com.watchlist.data.repository
 
 import com.watchlist.data.entity.mapper.MovieMapper
 import com.watchlist.data.repository.movie_datasourse.MovieDataFactory
+import com.watchlist.domain.model.InCinemaMovie
 import com.watchlist.domain.model.OnBoardingMovie
 import com.watchlist.domain.repository.movie.MovieRepository
 import rx.Observable
@@ -14,5 +15,9 @@ class MovieDataRepository @Inject constructor(private val mapper: MovieMapper, p
 
     override fun getOnBoarding(take: Int, skip: Int): Observable<ArrayList<OnBoardingMovie>> {
         return dataFactory.createCloudDataStore().getOnBoarding(take, skip).map({ mapper.transform(it) })
+    }
+
+    override fun getInCinemaMovies(take: Int, skip: Int): Observable<InCinemaMovie> {
+        return dataFactory.createCloudDataStore().getInCinemaMovies(take, skip)
     }
 }

@@ -1,29 +1,44 @@
 package com.watchlist.presentation.ui.mvp.presenters
 
-import com.watchlist.domain.interactor.movie.MovieInteractor
-import com.watchlist.domain.model.CinemaMovie
+import com.watchlist.domain.interactor.movie.InCinemaInteractor
+import com.watchlist.domain.model.InCinemaMovie
 import com.watchlist.presentation.ui.mvp.views.HomeView
+import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
 
 /**
  * Created by alexanderpereu on 02.03.2018.
  */
 
-class HomePresenter @Inject
-constructor(private val movieInteractor: MovieInteractor): HomeView {
-    override fun showList(list: ArrayList<CinemaMovie>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class HomePresenter<V : HomeView>
+@Inject
+constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V> () {
+
+    private var view: V? = null
+    private val isViewAttached: Boolean get() = view != null
+
+    private var take = 10
+    private var skip = 0
+
+    override fun onAttach(view: V?) {
+       this.view = view
+        getCinemaMovie()
+
     }
 
-    override fun showLoading(isLoading: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun getCinemaMovie() {
+        movieInteractor.take = take
+        movieInteractor.skip = skip
+        skip += take
+        movieInteractor.buildUseCaseObservableObject(FunctionSubscriber<InCinemaMovie>()
+                .onNext { getView()?.showList(it) }
+                .onError { getView()?.showError(it) } )
     }
 
-    override fun showError(error: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getView(): V?  = this.view
 
-    fun stopLoading() {
+    override fun onDetach() {
+        this.view = null
 
     }
 }

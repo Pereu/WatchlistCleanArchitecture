@@ -14,8 +14,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimaryDark"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?android:attr/colorPrimaryDark"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             >
 
@@ -23,7 +23,7 @@
             android:id="@+id/main_app_bar_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:visibility="visible"
             android:padding="4dp"
             android:src="@drawable/arrow_left"/>

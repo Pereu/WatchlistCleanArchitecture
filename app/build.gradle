@@ -65,8 +65,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 
     //Rx
     implementation 'io.reactivex:rxandroid:1.2.1'
@@ -81,7 +81,7 @@ dependencies {
     kapt "com.arello-mobile:moxy-compiler:$moxy"
 
     //Anko
-    compile "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.6.1'

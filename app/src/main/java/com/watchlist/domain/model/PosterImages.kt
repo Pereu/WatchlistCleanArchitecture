@@ -4,9 +4,9 @@ package com.watchlist.domain.model
 /**
  * Created by alexanderpereu on 05.02.2018.
  */
-open class TrendingImage {
+open class PosterImages {
 
-    open var Url: String = ""
+    open var Url = ""
 
-    open var Width: Int = 0
+    open var Width = 0
 }

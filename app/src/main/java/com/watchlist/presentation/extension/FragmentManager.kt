@@ -15,25 +15,25 @@ import com.watchlist.R
 fun FragmentManager.addFragment(fragment: Fragment, container: Int){
     val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, 0)
-    fragmentTransaction?.add(container, fragment)
+    fragmentTransaction.add(container, fragment)
     fragmentTransaction.addToBackStack(null)
-    fragmentTransaction?.commit()
+    fragmentTransaction.commit()
 }
 
 @SuppressLint("ResourceType")
 fun FragmentManager.replaceFragment(fragment: Fragment, container: Int){
     val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, 0)
-    fragmentTransaction?.replace(container, fragment)
-    fragmentTransaction?.commit()
+    fragmentTransaction.replace(container, fragment)
+    fragmentTransaction.commit()
 }
 
 @SuppressLint("ResourceType")
 fun FragmentManager.removeFragment(fragment: Fragment) {
     val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.setCustomAnimations(0, R.anim.slide_out_down)
-    fragmentTransaction?.remove(fragment)
-    fragmentTransaction?.commit()
+    fragmentTransaction.remove(fragment)
+    fragmentTransaction.commit()
     this.popBackStack()
 }
 

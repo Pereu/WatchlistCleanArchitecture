@@ -1,6 +1,6 @@
 package com.watchlist.data.entity
 
-import com.watchlist.domain.model.TrendingImage
+import com.watchlist.domain.model.PosterImages
 
 /**
  * Created by alexanderpereu on 06.02.2018.
@@ -8,5 +8,5 @@ import com.watchlist.domain.model.TrendingImage
 open class OnBoardingEntity {
     open var MovieId: Long = 0
 
-    open var Posters: ArrayList<TrendingImage>? = null
+    open var Posters: ArrayList<PosterImages>? = null
 }

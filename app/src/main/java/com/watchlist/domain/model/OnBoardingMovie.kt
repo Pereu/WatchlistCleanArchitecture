@@ -7,5 +7,5 @@ open class OnBoardingMovie {
 
     open var MovieId: Long = 0
 
-    open var Posters: ArrayList<TrendingImage>? = null
+    open var Posters: ArrayList<PosterImages>? = null
 }

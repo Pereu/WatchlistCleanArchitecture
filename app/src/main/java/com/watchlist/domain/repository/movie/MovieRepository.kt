@@ -1,5 +1,6 @@
 package com.watchlist.domain.repository.movie
 
+import com.watchlist.domain.model.InCinemaMovie
 import com.watchlist.domain.model.OnBoardingMovie
 import rx.Observable
 
@@ -9,4 +10,5 @@ import rx.Observable
 interface MovieRepository {
 
     fun getOnBoarding(take: Int, skip: Int) : Observable<ArrayList<OnBoardingMovie>>
+    fun getInCinemaMovies(take: Int, skip: Int): Observable<InCinemaMovie>
 }

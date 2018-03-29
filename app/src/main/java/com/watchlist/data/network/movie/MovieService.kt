@@ -1,6 +1,7 @@
 package com.watchlist.data.network.movie
 
 import com.watchlist.data.entity.OnBoardingEntity
+import com.watchlist.domain.model.InCinemaMovie
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -15,4 +16,14 @@ interface MovieService {
     fun getOnBoardingMovie(@Header("X-Token") token: String,
                                     @Query("take") take: Int,
                                     @Query("skip") skip: Int): Observable<ArrayList<OnBoardingEntity>>
+
+    @GET("SearchMovie/Search/Get")
+    fun getInCinemaMovies(@Header("X-Token") token: String,
+                          @Header("CityApp") city: String,
+                          @Query("take") take: Int,
+                          @Query("skip") skip: Int,
+                          @Query("KeyWords")  tags : String,
+                          @Query("SearchDate")  searchDate : String,
+                          @Query("IsSingleChoice") isSingleChoice : Boolean) : Observable<InCinemaMovie>
+
 }

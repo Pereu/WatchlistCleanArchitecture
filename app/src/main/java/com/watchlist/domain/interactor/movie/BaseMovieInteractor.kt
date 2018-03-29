@@ -14,16 +14,26 @@ abstract class BaseMovieInteractor<T> protected constructor(private val threadEx
 
     private var subscription = Subscriptions.empty()
 
-    protected abstract fun buildUseCaseObservableOnBoarding(): Observable<ArrayList<T>>
+    protected abstract fun buildUseCaseObservableList(): Observable<ArrayList<T>>?
+
+    protected abstract fun buildUseCaseObservableObject(): Observable<T>?
 
     //protected abstract fun buildUseCaseObservableSign(): Observable<T>
 
     @SuppressWarnings("unchecked")
-    fun buildUseCaseObservableOnBoarding(useCaseSubscriber: Subscriber<ArrayList<T>>) {
-        this.subscription = this.buildUseCaseObservableOnBoarding()
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler)
-                .subscribe(useCaseSubscriber)
+    fun buildUseCaseObservableList(useCaseSubscriber: Subscriber<ArrayList<T>>) {
+        this.subscription = this.buildUseCaseObservableList()
+                ?.subscribeOn(Schedulers.from(threadExecutor))
+                ?.observeOn(postExecutionThread.scheduler)
+                ?.subscribe(useCaseSubscriber)
+    }
+
+    @SuppressWarnings("unchecked")
+    fun buildUseCaseObservableObject(useCaseSubscriber: Subscriber<T>) {
+        this.subscription = this.buildUseCaseObservableObject()
+                ?.subscribeOn(Schedulers.from(threadExecutor))
+                ?.observeOn(postExecutionThread.scheduler)
+                ?.subscribe(useCaseSubscriber)
     }
 
 //    @SuppressWarnings("unchecked")

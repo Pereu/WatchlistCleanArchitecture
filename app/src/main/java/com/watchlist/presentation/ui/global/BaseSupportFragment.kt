@@ -3,17 +3,16 @@ package com.watchlist.presentation.ui.global
 import android.content.Context
 import android.net.ConnectivityManager
 import android.support.v4.app.Fragment
-import com.arellomobile.mvp.MvpAppCompatFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 /**
  * Created by alexanderpereu on 02.03.2018.
  */
-abstract class BaseSupportFragment : MvpAppCompatFragment(), HasSupportFragmentInjector {
+abstract class BaseSupportFragment : DaggerFragment() {
 
     @Inject
     lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
@@ -22,11 +21,8 @@ abstract class BaseSupportFragment : MvpAppCompatFragment(), HasSupportFragmentI
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
-    
 
-//    override fun fragmentInjector(): AndroidInjector<Fragment> {
-//        return childFragmentInjector
-//    }
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = childFragmentInjector
 
 
     fun checkInternet() : Boolean {

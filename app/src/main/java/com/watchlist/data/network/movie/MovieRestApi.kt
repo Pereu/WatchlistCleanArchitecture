@@ -1,9 +1,8 @@
 package com.watchlist.data.network.movie
 
-import com.watchlist.data.entity.OnBoardingEntity
-import com.watchlist.presentation.ui.fragments.LoginFragment
 import com.google.gson.Gson
-import com.watchlist.data.db.DBHelper
+import com.watchlist.data.entity.OnBoardingEntity
+import com.watchlist.domain.model.InCinemaMovie
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,5 +37,9 @@ class MovieRestApi @Inject constructor()  {
 
     fun getOnBoarding(token: String, take: Int, skip: Int) : Observable<ArrayList<OnBoardingEntity>> {
         return service.getOnBoardingMovie(token, take, skip)
+    }
+
+    fun getInCinemaMovies(token: String, take: Int, skip: Int): Observable<InCinemaMovie> {
+        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", "28.03.2018", true)
     }
 }

@@ -2,15 +2,15 @@ package com.watchlist.presentation.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.watchlist.R
 import com.watchlist.presentation.ui.adapters.BottomMenuPagerAdapter
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity(), AHBottomNavigation.OnTabSelectedListener {
+class MainActivity : DaggerAppCompatActivity(), AHBottomNavigation.OnTabSelectedListener {
 
     private val bottomNavigationItems = ArrayList<AHBottomNavigationItem>()
     private lateinit var adapter: BottomMenuPagerAdapter

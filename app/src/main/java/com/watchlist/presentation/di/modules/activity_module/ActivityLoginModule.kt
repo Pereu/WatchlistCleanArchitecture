@@ -1,8 +1,10 @@
 package com.watchlist.presentation.di.modules.activity_module
 
-import com.watchlist.presentation.di.modules.fragment_module.*
+import com.watchlist.presentation.di.modules.fragment_module.FragmentModule
+import com.watchlist.presentation.di.modules.fragment_module.LoginModule
+import com.watchlist.presentation.di.modules.fragment_module.OnBoardingModule
+import com.watchlist.presentation.di.modules.fragment_module.SignUpModule
 import com.watchlist.presentation.di.scopes.FragmentScope
-import com.watchlist.presentation.ui.fragments.HomeTabFragment
 import com.watchlist.presentation.ui.fragments.LoginFragment
 import com.watchlist.presentation.ui.fragments.OnBoardingFragment
 import com.watchlist.presentation.ui.fragments.SignUpFragment
@@ -26,10 +28,5 @@ abstract class ActivityLoginModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [(FragmentModule::class), (OnBoardingModule::class)])
     abstract fun bindOnBoardingFragment(): OnBoardingFragment
-
-    @FragmentScope
-    @ContributesAndroidInjector(modules = [(FragmentModule::class), (HomeModule::class)])
-    abstract fun bindHomeTabFragment(): HomeTabFragment
-
 
 }

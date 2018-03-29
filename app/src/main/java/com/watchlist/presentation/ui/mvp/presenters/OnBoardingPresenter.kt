@@ -1,10 +1,10 @@
 package com.watchlist.presentation.ui.mvp.presenters
 
-import com.watchlist.domain.interactor.movie.MovieInteractor
-import com.watchlist.domain.model.OnBoardingMovie
-import com.watchlist.presentation.ui.mvp.views.OnBoardingView
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.watchlist.domain.interactor.movie.OnBoardingInteractor
+import com.watchlist.domain.model.OnBoardingMovie
+import com.watchlist.presentation.ui.mvp.views.OnBoardingView
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @InjectViewState
 class OnBoardingPresenter
 @Inject
-constructor(private val movieInteractor: MovieInteractor): MvpPresenter<OnBoardingView>() {
+constructor(private val movieInteractor: OnBoardingInteractor): MvpPresenter<OnBoardingView>() {
 
     private var take = 10
     private var skip = 0
@@ -27,8 +27,8 @@ constructor(private val movieInteractor: MovieInteractor): MvpPresenter<OnBoardi
         movieInteractor.take = take
         movieInteractor.skip = skip
         skip += take
-        movieInteractor.buildUseCaseObservableOnBoarding(FunctionSubscriber<ArrayList<OnBoardingMovie>>()
+        movieInteractor.buildUseCaseObservableList(FunctionSubscriber<ArrayList<OnBoardingMovie>>()
                 .onNext { viewState.showList(it) }
-                .onError { viewState.showError(it) } )
+                .onError { viewState.showError(it) })
     }
 }
