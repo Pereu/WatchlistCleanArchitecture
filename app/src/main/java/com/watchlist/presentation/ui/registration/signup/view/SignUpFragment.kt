@@ -52,7 +52,7 @@ class SignUpFragment : BaseFragment(), LoginView {
         progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
     }
     override fun blockButton() {
-        fragment_sign_up_btn.block(presenter.isValid(), R.color.colorPrimaryDark, R.color.colorDisabled)
+        fragment_sign_up_btn.block(presenter.isValid())
     }
 
     override fun emailError() {

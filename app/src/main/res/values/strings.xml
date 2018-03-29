@@ -13,4 +13,6 @@
     <string name="search_tab">Search</string>
     <string name="account_tab">Account</string>
     <string name="in_cinema">In cinema</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="create">Create</string>
 </resources>

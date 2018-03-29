@@ -51,7 +51,8 @@ class LoginFragment : BaseFragment(), LoginView {
         progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
     }
     override fun blockButton() {
-        fragment_login_btn.block(presenter.isValid(), R.color.colorPrimaryDark, R.color.colorDisabled)  }
+        fragment_login_btn.block(presenter.isValid())
+    }
 
     override fun emailError() {
         fragment_login_user_email.error = resources.getString(R.string.valid_email)
