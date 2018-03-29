@@ -5,9 +5,9 @@ import com.watchlist.presentation.di.modules.fragment_module.LoginModule
 import com.watchlist.presentation.di.modules.fragment_module.OnBoardingModule
 import com.watchlist.presentation.di.modules.fragment_module.SignUpModule
 import com.watchlist.presentation.di.scopes.FragmentScope
-import com.watchlist.presentation.ui.fragments.LoginFragment
-import com.watchlist.presentation.ui.fragments.OnBoardingFragment
-import com.watchlist.presentation.ui.fragments.SignUpFragment
+import com.watchlist.presentation.ui.registration.login.view.LoginFragment
+import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
+import com.watchlist.presentation.ui.registration.signup.view.SignUpFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

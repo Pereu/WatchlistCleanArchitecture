@@ -8,7 +8,7 @@ import com.watchlist.data.repository.MovieDataRepository
 import com.watchlist.data.repository.movie_datasourse.MovieDataFactory
 import com.watchlist.domain.interactor.movie.OnBoardingInteractor
 import com.watchlist.presentation.UIThread
-import com.watchlist.presentation.ui.mvp.presenters.OnBoardingPresenter
+import com.watchlist.presentation.ui.registration.onboarding.OnBoardingPresenter
 import dagger.Module
 import dagger.Provides
 

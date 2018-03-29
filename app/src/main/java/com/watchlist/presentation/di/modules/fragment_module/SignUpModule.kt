@@ -8,7 +8,7 @@ import com.watchlist.data.repository.UserDataRepository
 import com.watchlist.data.repository.user_datasourse.UserDataFactory
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.presentation.UIThread
-import com.watchlist.presentation.ui.mvp.presenters.SignUpPresenter
+import com.watchlist.presentation.ui.registration.signup.SignUpPresenter
 import dagger.Module
 import dagger.Provides
 

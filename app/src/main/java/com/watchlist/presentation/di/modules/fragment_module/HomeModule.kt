@@ -8,8 +8,8 @@ import com.watchlist.data.repository.MovieDataRepository
 import com.watchlist.data.repository.movie_datasourse.MovieDataFactory
 import com.watchlist.domain.interactor.movie.InCinemaInteractor
 import com.watchlist.presentation.UIThread
-import com.watchlist.presentation.ui.mvp.presenters.HomePresenter
-import com.watchlist.presentation.ui.mvp.views.HomeView
+import com.watchlist.presentation.ui.bottom_tabs.home_tab.HomePresenter
+import com.watchlist.presentation.ui.bottom_tabs.home_tab.view.HomeView
 import dagger.Module
 import dagger.Provides
 

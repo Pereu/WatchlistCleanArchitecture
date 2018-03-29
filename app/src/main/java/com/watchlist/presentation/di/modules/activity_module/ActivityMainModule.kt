@@ -3,7 +3,7 @@ package com.watchlist.presentation.di.modules.activity_module
 import com.watchlist.presentation.di.modules.fragment_module.FragmentModule
 import com.watchlist.presentation.di.modules.fragment_module.HomeModule
 import com.watchlist.presentation.di.scopes.FragmentScope
-import com.watchlist.presentation.ui.fragments.HomeTabFragment
+import com.watchlist.presentation.ui.bottom_tabs.home_tab.view.HomeTabFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
