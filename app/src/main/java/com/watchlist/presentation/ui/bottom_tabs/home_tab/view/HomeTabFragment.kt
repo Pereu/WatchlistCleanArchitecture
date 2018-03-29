@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.InCinemaMovie
 import com.watchlist.presentation.extension.addParams
 import com.watchlist.presentation.extension.changePosition
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.adapter.SlideViewPagerAdapter
 import com.watchlist.presentation.ui.bottom_tabs.home_tab.HomePresenter
-import dagger.android.support.DaggerFragment
+import com.watchlist.presentation.ui.bottom_tabs.home_tab.adapter.SlideViewPagerAdapter
+import com.watchlist.presentation.ui.global.view.BaseSupportFragment
 import kotlinx.android.synthetic.main.fragment_tab_home.*
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ import javax.inject.Inject
  * Created by alexanderpereu on 20.02.2018.
  */
 
-class HomeTabFragment : DaggerFragment(), HomeView {
+class HomeTabFragment : BaseSupportFragment(), HomeView {
 
     @Inject
     lateinit var presenter: HomePresenter<HomeView>
@@ -56,7 +57,10 @@ class HomeTabFragment : DaggerFragment(), HomeView {
     }
 
     override fun showError(error: Throwable) {
-        var a = error
+        error.message?.let { longToast(it) }
+    }
+
+    override fun showMessage(message: String) {
     }
 
     private fun fillDotes() {
@@ -76,5 +80,10 @@ class HomeTabFragment : DaggerFragment(), HomeView {
 
     private fun setActiveDotes (position: Int) {
         dots[position].setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.active_dot) })
+    }
+
+    override fun onDestroy() {
+        presenter.onDetach()
+        super.onDestroy()
     }
 }

@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.User
@@ -16,14 +14,13 @@ import com.watchlist.presentation.extension.block
 import com.watchlist.presentation.extension.onTextChanged
 import com.watchlist.presentation.extension.replaceFragment
 import com.watchlist.presentation.ui.bottom_tabs.MainActivity
-import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
-import com.watchlist.presentation.ui.registration.signup.view.SignUpFragment
 import com.watchlist.presentation.ui.global.view.BaseFragment
 import com.watchlist.presentation.ui.registration.login.LoginPresenter
+import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
+import com.watchlist.presentation.ui.registration.signup.view.SignUpFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
-
 
 /**
  * Created by alexanderpereu on 22.01.2018.
@@ -31,13 +28,7 @@ import javax.inject.Inject
 class LoginFragment : BaseFragment(), LoginView {
 
     @Inject
-    @InjectPresenter
-    lateinit var presenter: LoginPresenter
-
-    @ProvidePresenter
-    fun provideLoginPresenter(): LoginPresenter {
-        return presenter
-    }
+    lateinit var presenter: LoginPresenter<LoginView>
 
     private var progressDialog: ProgressDialog? = null
 
@@ -45,7 +36,7 @@ class LoginFragment : BaseFragment(), LoginView {
             inflater.inflate(R.layout.fragment_login, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        presenter.viewIsReady()
+        presenter.onAttach(this)
         fragment_login_user_email_input.onTextChanged { presenter.validEmail(it)}
         fragment_login_user_password_input.onTextChanged { presenter.validPassword(it)}
         fragment_login_btn.setOnClickListener { presenter.login(fragment_login_user_email_input.text.toString(), fragment_login_user_password_input.text.toString(), checkInternet() ) }
@@ -87,9 +78,9 @@ class LoginFragment : BaseFragment(), LoginView {
         fragmentManager.replaceFragment(OnBoardingFragment(), R.id.activity_login_container)
     }
 
-    override fun showError(it: Throwable) {
+    override fun showError(error: Throwable) {
         progressDialog?.dismiss()
-        it.message?.let { it1 -> longToast(it1) }
+        error.message?.let { it -> longToast(it) }
     }
 
     override fun showHome() {
@@ -99,4 +90,6 @@ class LoginFragment : BaseFragment(), LoginView {
     override fun nameError() {}
 
     override fun nameSuccess() {}
+
+    override fun showLoading(isLoading: Boolean) {}
 }

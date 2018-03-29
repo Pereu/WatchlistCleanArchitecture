@@ -5,6 +5,7 @@ import com.watchlist.presentation.di.modules.activity_module.ActivityMainModule
 import com.watchlist.presentation.di.scopes.ActivityScope
 import com.watchlist.presentation.ui.registration.LoginActivity
 import com.watchlist.presentation.ui.bottom_tabs.MainActivity
+import com.watchlist.presentation.ui.global.view.BaseActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

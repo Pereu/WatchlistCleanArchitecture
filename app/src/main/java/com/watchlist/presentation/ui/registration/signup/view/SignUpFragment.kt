@@ -6,17 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.User
 import com.watchlist.presentation.extension.*
 import com.watchlist.presentation.ui.bottom_tabs.MainActivity
-import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
 import com.watchlist.presentation.ui.global.view.BaseFragment
-import com.watchlist.presentation.ui.registration.signup.SignUpPresenter
 import com.watchlist.presentation.ui.registration.login.view.LoginView
+import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
+import com.watchlist.presentation.ui.registration.signup.SignUpPresenter
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
@@ -26,15 +24,8 @@ import javax.inject.Inject
  */
 class SignUpFragment : BaseFragment(), LoginView {
 
-
     @Inject
-    @InjectPresenter
-    lateinit var presenter: SignUpPresenter
-
-    @ProvidePresenter
-    fun provideSignUpPresenter(): SignUpPresenter {
-        return presenter
-    }
+    lateinit var presenter: SignUpPresenter<LoginView>
 
     private var progressDialog: ProgressDialog? = null
 
@@ -43,7 +34,7 @@ class SignUpFragment : BaseFragment(), LoginView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.viewIsReady()
+        presenter.onAttach(this)
         fragment_sign_up_user_email_input.onTextChanged { presenter.validEmail(it)}
         fragment_sign_up_user_password_input.onTextChanged { presenter.validPassword(it)}
         fragment_sign_up_user_name_input.onTextChanged { presenter.validName(it)}
@@ -106,5 +97,14 @@ class SignUpFragment : BaseFragment(), LoginView {
         startActivity(Intent(activity, MainActivity::class.java))
         activity.finish()
     }
+    override fun showLoading(isLoading: Boolean) {
+
+    }
+
+    override fun onDestroy() {
+        presenter.onDetach()
+        super.onDestroy()
+    }
+
 
 }

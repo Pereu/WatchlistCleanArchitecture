@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.watchlist.R
+import com.watchlist.presentation.ui.global.view.BaseActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*

@@ -1,10 +1,9 @@
 package com.watchlist.presentation.ui.registration.signup
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.domain.model.User
 import com.watchlist.domain.model_params.UserSignUpParams
+import com.watchlist.presentation.ui.global.BasePresenter
 import com.watchlist.presentation.ui.registration.login.view.LoginView
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
@@ -12,16 +11,16 @@ import javax.inject.Inject
 /**
  * Created by alexanderpereu on 30.01.2018.
  */
-@InjectViewState
-class SignUpPresenter  @Inject
-constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView>()  {
+
+class SignUpPresenter  <V : LoginView>
+@Inject constructor(private val userInteractor: UserInteractor) : BasePresenter<V>()  {
 
     private var isEmail = false
     private var isPassword = false
     private var isName = false
 
-    fun viewIsReady() {
-        viewState.blockButton()
+     override fun viewIsReady() {
+         getView()?.blockButton()
     }
 
     fun isValid(): Boolean  = isEmail && isPassword && isName
@@ -29,46 +28,46 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
     fun validEmail(mail: String) {
         if (mail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
             isEmail = false
-            viewState.emailError()
+            getView()?.emailError()
         } else {
             isEmail= true
-            viewState.emailSuccess()
+            getView()?.emailSuccess()
         }
     }
 
     fun validPassword(password: String) {
         if (password.length < 6) {
             isPassword = false
-            viewState.passwordError()
+            getView()?.passwordError()
         } else {
             isPassword = true
-            viewState.passwordSuccess()
+            getView()?.passwordSuccess()
         }
     }
 
     fun validName(name: String) {
         if (name.length < 3) {
             isName = false
-            viewState.nameError()
+            getView()?.nameError()
         } else {
             isName = true
-            viewState.nameSuccess()
+            getView()?.nameSuccess()
         }
     }
 
     fun signUp(mail: String, password: String, name: String, checkInternet: Boolean) {
         if (checkInternet) {
-            viewState.showLoading()
+            getView()?.showLoading()
             val user = UserSignUpParams()
             user.email = mail
             user.password = password
             user.UserName = name
             userInteractor.userSignUpParams = user
             userInteractor.executeSignUp(FunctionSubscriber<User>()
-                    .onNext { viewState.showSuccess(it) }
-                    .onError { viewState.showError(it) })
+                    .onNext { getView()?.showSuccess(it) }
+                    .onError { getView()?.showError(it) })
         } else {
-            viewState.showMessage("No internet")
+            getView()?.showMessage("No internet")
         }
     }
 }

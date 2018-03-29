@@ -1,9 +1,8 @@
 package com.watchlist.presentation.ui.registration.onboarding
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import com.watchlist.domain.interactor.movie.OnBoardingInteractor
 import com.watchlist.domain.model.OnBoardingMovie
+import com.watchlist.presentation.ui.global.BasePresenter
 import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingView
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
@@ -11,16 +10,15 @@ import javax.inject.Inject
 /**
  * Created by alexanderpereu on 02.02.2018.
  */
-@InjectViewState
-class OnBoardingPresenter
-@Inject
-constructor(private val movieInteractor: OnBoardingInteractor): MvpPresenter<OnBoardingView>() {
+
+class OnBoardingPresenter  <V : OnBoardingView>
+@Inject constructor(private val movieInteractor: OnBoardingInteractor): BasePresenter<V>() {
 
     private var take = 10
     private var skip = 0
 
-    fun viewIsReady() {
-        viewState.showLoading(true)
+    override fun viewIsReady() {
+        getView()?.showLoading(true)
     }
 
     fun loadMovies() {
@@ -28,7 +26,7 @@ constructor(private val movieInteractor: OnBoardingInteractor): MvpPresenter<OnB
         movieInteractor.skip = skip
         skip += take
         movieInteractor.buildUseCaseObservableList(FunctionSubscriber<ArrayList<OnBoardingMovie>>()
-                .onNext { viewState.showList(it) }
-                .onError { viewState.showError(it) })
+                .onNext { getView()?.showList(it) }
+                .onError { getView()?.showError(it) })
     }
 }

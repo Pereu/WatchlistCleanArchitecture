@@ -8,6 +8,7 @@ import com.watchlist.data.repository.UserDataRepository
 import com.watchlist.data.repository.user_datasourse.UserDataFactory
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.presentation.UIThread
+import com.watchlist.presentation.ui.registration.login.view.LoginView
 import com.watchlist.presentation.ui.registration.signup.SignUpPresenter
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,7 @@ import dagger.Provides
 class SignUpModule {
 
     @Provides
-    fun provideSignUpPresenter() : SignUpPresenter {
+    fun provideSignUpPresenter() : SignUpPresenter<LoginView> {
         return SignUpPresenter(UserInteractor(JobExecutor(), UIThread(),
                 UserDataRepository(UserMapper(), UserDataFactory(UserRestApi(), DBHelper()))))
     }

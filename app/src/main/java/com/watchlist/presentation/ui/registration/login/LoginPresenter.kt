@@ -1,10 +1,9 @@
 package com.watchlist.presentation.ui.registration.login
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.domain.model.User
 import com.watchlist.domain.model_params.UserLoginParams
+import com.watchlist.presentation.ui.global.BasePresenter
 import com.watchlist.presentation.ui.registration.login.view.LoginView
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
@@ -12,33 +11,34 @@ import javax.inject.Inject
 /**
  * Created by alexanderpereu on 23.01.2018.
  */
-@InjectViewState
-class LoginPresenter @Inject
-constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView>() {
+
+class LoginPresenter <V : LoginView>
+@Inject constructor(private val userInteractor: UserInteractor) : BasePresenter<V>() {
 
     private var isEmail = false
     private var isPassword = false
 
-    fun viewIsReady() {
-        if (userInteractor.isUserAlreadyExist()) viewState.showHome() else viewState.blockButton()
+    override fun viewIsReady() {
+        if (userInteractor.isUserAlreadyExist()) getView()?.showHome() else getView()?.blockButton()
     }
+
     fun validEmail(mail: String) {
        if (mail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
             isEmail = false
-            viewState.emailError()
+           getView()?.emailError()
         } else {
             isEmail= true
-            viewState.emailSuccess()
+           getView()?.emailSuccess()
         }
     }
 
     fun validPassword(password: String) {
         if (password.length < 6) {
             isPassword = false
-            viewState.passwordError()
+            getView()?.passwordError()
         } else {
             isPassword = true
-            viewState.passwordSuccess()
+            getView()?.passwordSuccess()
         }
     }
 
@@ -46,16 +46,16 @@ constructor(private val userInteractor: UserInteractor) : MvpPresenter<LoginView
 
     fun login(email: String, password: String, checkInternet: Boolean) {
         if (checkInternet) {
-            viewState.showLoading()
+            getView()?.showLoading()
             val user = UserLoginParams()
             user.email = email
             user.password = password
             userInteractor.userLoginParams = user
             userInteractor.executeLogin(FunctionSubscriber<User>()
-                    .onNext { viewState.showSuccess(it) }
-                    .onError { viewState.showError(it) })
+                    .onNext { getView()?.showSuccess(it) }
+                    .onError { getView()?.showError(it) })
         } else {
-            viewState.showMessage("No internet")
+            getView()?.showMessage("No internet")
         }
     }
 }

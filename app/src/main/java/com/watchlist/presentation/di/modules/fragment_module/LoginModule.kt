@@ -9,6 +9,7 @@ import com.watchlist.data.repository.user_datasourse.UserDataFactory
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.presentation.UIThread
 import com.watchlist.presentation.ui.registration.login.LoginPresenter
+import com.watchlist.presentation.ui.registration.login.view.LoginView
 import dagger.Module
 import dagger.Provides
 
@@ -19,7 +20,7 @@ import dagger.Provides
 class LoginModule {
 
     @Provides
-    fun provideLoginPresenter() : LoginPresenter {
+    fun provideLoginPresenter() : LoginPresenter<LoginView> {
         return LoginPresenter(UserInteractor(JobExecutor(), UIThread(),
                 UserDataRepository(UserMapper(), UserDataFactory(UserRestApi(), DBHelper()))))
     }

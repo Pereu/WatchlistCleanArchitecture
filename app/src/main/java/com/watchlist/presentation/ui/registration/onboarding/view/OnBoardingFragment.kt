@@ -6,17 +6,15 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.OnBoardingMovie
 import com.watchlist.presentation.extension.visible
 import com.watchlist.presentation.ui.bottom_tabs.MainActivity
-import com.watchlist.presentation.ui.registration.onboarding.adapter.OnBoardingAdapter
+import com.watchlist.presentation.ui.global.BaseOnScrollListener
 import com.watchlist.presentation.ui.global.view.BaseFragment
 import com.watchlist.presentation.ui.registration.onboarding.OnBoardingPresenter
-import com.watchlist.presentation.ui.global.BaseOnScrollListener
+import com.watchlist.presentation.ui.registration.onboarding.adapter.OnBoardingAdapter
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 import javax.inject.Inject
 
@@ -26,13 +24,7 @@ import javax.inject.Inject
 class OnBoardingFragment : BaseFragment(), OnBoardingView {
 
     @Inject
-    @InjectPresenter
-    lateinit var presenter: OnBoardingPresenter
-
-    @ProvidePresenter
-    fun provideOnBoardingPresenter(): OnBoardingPresenter {
-        return presenter
-    }
+    lateinit var presenter: OnBoardingPresenter <OnBoardingView>
 
     private var adapter: OnBoardingAdapter? = null
 
@@ -44,7 +36,7 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        presenter.viewIsReady()
+        presenter.onAttach(this)
         presenter.loadMovies()
         fragment_on_boarding_btn.setOnClickListener { goToHome() }
     }
@@ -67,19 +59,21 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         presenter.loadMovies()
     }
 
-    override fun showLoading(b: Boolean) {
-        fragment_on_boarding_progress_bar.visible = b
+    override fun showLoading(isLoading: Boolean) {
+        fragment_on_boarding_progress_bar.visible = isLoading
     }
 
-    override fun showList(it: ArrayList<OnBoardingMovie>) {
-        if (it.isEmpty()) baseOnScrollListener?.setAvailable(false) else baseOnScrollListener?.setLoading(false)
+    override fun showList(list: ArrayList<OnBoardingMovie>) {
+        if (list.isEmpty()) baseOnScrollListener?.setAvailable(false) else baseOnScrollListener?.setLoading(false)
 
         showLoading(false)
-        adapter?.setList(it)
+        adapter?.setList(list)
     }
 
-    override fun showError(it: Throwable) {
+    override fun showError(error: Throwable) {
         showLoading(false)
-        it.message?.let { it1 -> longToast(it1) }
+        error.message?.let { it -> longToast(it) }
     }
+
+    override fun showMessage(message: String) {}
 }

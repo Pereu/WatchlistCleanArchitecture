@@ -23,9 +23,4 @@ class HomeModule {
         return HomePresenter(InCinemaInteractor(JobExecutor(), UIThread(),
                 MovieDataRepository(MovieMapper(), MovieDataFactory(MovieRestApi(), DBHelper()))))
     }
-
-//    @Provides
-//    fun provideHomePresenter(presenter: HomePresenter<HomeView>) : BasePresenter<HomeView> {
-//        return presenter
-//    }
 }

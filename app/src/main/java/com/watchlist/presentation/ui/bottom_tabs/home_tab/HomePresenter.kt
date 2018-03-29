@@ -15,16 +15,11 @@ class HomePresenter<V : HomeView>
 @Inject
 constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V>() {
 
-    private var view: V? = null
-    private val isViewAttached: Boolean get() = view != null
-
     private var take = 10
     private var skip = 0
 
-    override fun onAttach(view: V?) {
-       this.view = view
+    override fun viewIsReady() {
         getCinemaMovie()
-
     }
 
     private fun getCinemaMovie() {
@@ -34,12 +29,5 @@ constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V>(
         movieInteractor.buildUseCaseObservableObject(FunctionSubscriber<InCinemaMovie>()
                 .onNext { getView()?.showList(it) }
                 .onError { getView()?.showError(it) } )
-    }
-
-    override fun getView(): V?  = this.view
-
-    override fun onDetach() {
-        this.view = null
-
     }
 }
