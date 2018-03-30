@@ -2,8 +2,8 @@ package com.watchlist.presentation.ui.bottom_tabs.home_tab
 
 import com.watchlist.domain.interactor.movie.InCinemaInteractor
 import com.watchlist.domain.model.InCinemaMovie
-import com.watchlist.presentation.ui.global.BasePresenter
 import com.watchlist.presentation.ui.bottom_tabs.home_tab.view.HomeView
+import com.watchlist.presentation.ui.global.BasePresenter
 import rx.lang.kotlin.FunctionSubscriber
 import javax.inject.Inject
 
@@ -14,6 +14,7 @@ import javax.inject.Inject
 class HomePresenter<V : HomeView>
 @Inject
 constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V>() {
+
 
     private var take = 10
     private var skip = 0
@@ -29,5 +30,9 @@ constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V>(
         movieInteractor.buildUseCaseObservableObject(FunctionSubscriber<InCinemaMovie>()
                 .onNext { getView()?.showList(it) }
                 .onError { getView()?.showError(it) } )
+    }
+
+    override fun viewIsGone() {
+        movieInteractor.unsubscribe()
     }
 }

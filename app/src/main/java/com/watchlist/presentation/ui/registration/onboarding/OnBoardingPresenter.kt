@@ -14,6 +14,7 @@ import javax.inject.Inject
 class OnBoardingPresenter  <V : OnBoardingView>
 @Inject constructor(private val movieInteractor: OnBoardingInteractor): BasePresenter<V>() {
 
+
     private var take = 10
     private var skip = 0
 
@@ -28,5 +29,8 @@ class OnBoardingPresenter  <V : OnBoardingView>
         movieInteractor.buildUseCaseObservableList(FunctionSubscriber<ArrayList<OnBoardingMovie>>()
                 .onNext { getView()?.showList(it) }
                 .onError { getView()?.showError(it) })
+    }
+    override fun viewIsGone() {
+        movieInteractor.unsubscribe()
     }
 }

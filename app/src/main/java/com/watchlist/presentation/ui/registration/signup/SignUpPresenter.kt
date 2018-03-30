@@ -70,4 +70,8 @@ class SignUpPresenter  <V : LoginView>
             getView()?.showMessage("No internet")
         }
     }
+
+    override fun viewIsGone() {
+        userInteractor.unsubscribe()
+    }
 }

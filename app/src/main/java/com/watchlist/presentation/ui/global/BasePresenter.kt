@@ -17,10 +17,13 @@ abstract class BasePresenter <V> : MvpView<V> {
 
     override fun onDetach() {
         view = null
+        viewIsGone()
     }
 
     override fun getView(): V? = view
 
     abstract fun viewIsReady ()
+
+    abstract fun viewIsGone ()
 
 }
