@@ -33,15 +33,28 @@ class SlideViewPagerAdapter : PagerAdapter() {
         val inflater = container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view  = inflater.inflate(R.layout.item_home, null)
 
-        val index = images[position].Backdrops.size - 3
-
-        Glide.with(view.context)
-                .load(images[position].Backdrops[index].Url)
-                .into(view.item_home_in_cinema_image)
+        bindItem(position, view)
 
         val vp = container as ViewPager
         vp.addView(view, 0)
         return view
+    }
+
+    private fun bindItem(position: Int, view: View) {
+        bindImage(position, view)
+        view.item_home_title.text = images[position].Title
+        view.item_home_subtitle.text = images[position].Subtitle
+    }
+
+    private fun bindImage(position: Int, view: View) {
+        var index = 0
+        if (images[position].Backdrops.size > 4) {
+            index = images[position].Backdrops.size - 3
+        }
+
+        Glide.with(view.context)
+                .load(images[position].Backdrops[index].Url)
+                .into(view.item_home_in_cinema_image)
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {

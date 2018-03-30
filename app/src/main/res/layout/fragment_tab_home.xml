@@ -3,23 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/fragment_home_text_in_cinema_title"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:text="@string/in_cinema"
-        android:padding="10dp"
-        android:textSize="18sp"
+        android:padding="12dp"
+        android:textSize="22sp"
         android:textColor="@color/colorAccent"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:fontFamily="@font/amatic" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/fragment_home_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_home_text_in_cinema_title" />
@@ -28,11 +29,12 @@
         android:id="@+id/fragment_home_dotes_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="90dp"
         android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_home_view_pager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_home_view_pager"
-        android:orientation="horizontal" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/fragment_home_progress_bar"

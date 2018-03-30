@@ -4,18 +4,18 @@ package com.watchlist.domain.model
 
 class Item {
 
-    private val MovieId = 0
-    private val Title = ""
-    private val Subtitle = ""
-    private val Rated  = 0
-    private val Rating = 0.0
-    private val RatingCount: Int = 0
-    private val ProductionYear: Int = 0
-    private val savedCount: Int? = null
-    private val Trailer: String? = null
-    private val ShowtimesStrList: List<String>? = null
-    private val Duration: String? = null
-     val Backdrops: ArrayList<BackdropImages> = arrayListOf()
+    val MovieId = 0
+    val Title = ""
+    val Subtitle = ""
+    val Rated  = 0
+    val Rating = 0.0
+    val RatingCount: Int = 0
+    val ProductionYear: Int = 0
+    val savedCount: Int? = null
+    val Trailer: String? = null
+    val ShowtimesStrList: List<String>? = null
+    val Duration: String? = null
+    val Backdrops: ArrayList<BackdropImages> = arrayListOf()
 //    @SerializedName("Posters")
 //    @Expose
 //    private val posters: List<Poster>? = null
