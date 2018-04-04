@@ -7,7 +7,8 @@ import javax.inject.Inject
 /**
  * Created by alexanderpereu on 06.02.2018.
  */
-class MovieDataFactory @Inject constructor(private val restApi: MovieRestApi, val dbHelper: DBHelper) {
+class MovieDataFactory
+@Inject constructor(private val restApi: MovieRestApi, val dbHelper: DBHelper) {
 
     fun createCloudDataStore(): MovieDataStore {
         return MovieCloudDataStore(restApi, dbHelper)

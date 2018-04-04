@@ -1,7 +1,8 @@
 package com.watchlist.data.repository.movie_datasourse
 
-import com.watchlist.data.entity.OnBoardingEntity
 import com.watchlist.domain.model.InCinemaMovie
+import com.watchlist.domain.model.OnBoardingMovie
+import retrofit2.Call
 import rx.Observable
 
 /**
@@ -9,6 +10,6 @@ import rx.Observable
  */
 interface MovieDataStore  {
 
-    fun getOnBoarding (take: Int, skip: Int): Observable<ArrayList<OnBoardingEntity>>
     fun getInCinemaMovies(take: Int, skip: Int): Observable<InCinemaMovie>
+    fun getNewOnBoarding(take: Int, skip: Int): Call<ArrayList<OnBoardingMovie>>
 }

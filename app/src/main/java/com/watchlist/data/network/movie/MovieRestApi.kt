@@ -1,13 +1,13 @@
 package com.watchlist.data.network.movie
 
 import com.google.gson.Gson
-import com.watchlist.data.entity.OnBoardingEntity
 import com.watchlist.domain.model.InCinemaMovie
+import com.watchlist.domain.model.OnBoardingMovie
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import rx.Observable
 import javax.inject.Inject
@@ -24,7 +24,6 @@ class MovieRestApi @Inject constructor()  {
         val retro = Retrofit.Builder()
                 .baseUrl("http://apidev.filmgrail.com/apiv2_14/")
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(builder.build()).build()
         service = retro.create(MovieService::class.java)
     }
@@ -35,11 +34,11 @@ class MovieRestApi @Inject constructor()  {
         return interceptor
     }
 
-    fun getOnBoarding(token: String, take: Int, skip: Int) : Observable<ArrayList<OnBoardingEntity>> {
-        return service.getOnBoardingMovie(token, take, skip)
+    fun getInCinemaMovies(token: String, take: Int, skip: Int): Observable<InCinemaMovie> {
+        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", "04.04.2018", true)
     }
 
-    fun getInCinemaMovies(token: String, take: Int, skip: Int): Observable<InCinemaMovie> {
-        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", "02.04.2018", true)
+    fun getNewOnBoarding(token: String, take: Int, skip: Int): Call<ArrayList<OnBoardingMovie>> {
+        return service.getNewOnBoardingMovie(token, take, skip)
     }
 }
