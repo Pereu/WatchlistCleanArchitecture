@@ -1,8 +1,8 @@
 package com.watchlist.domain.repository.user
 
 import com.watchlist.domain.model.User
-import com.watchlist.domain.model_params.UserLoginParams
-import com.watchlist.domain.model_params.UserSignUpParams
+import com.watchlist.domain.params.UserLoginParams
+import com.watchlist.domain.params.UserSignUpParams
 import rx.Observable
 
 /**

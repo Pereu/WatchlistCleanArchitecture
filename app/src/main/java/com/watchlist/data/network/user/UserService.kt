@@ -1,8 +1,8 @@
 package com.watchlist.data.network.user
 
 import com.watchlist.data.entity.UserEntity
-import com.watchlist.domain.model_params.UserLoginParams
-import com.watchlist.domain.model_params.UserSignUpParams
+import com.watchlist.domain.params.UserLoginParams
+import com.watchlist.domain.params.UserSignUpParams
 import retrofit2.http.Body
 import retrofit2.http.POST
 import rx.Observable

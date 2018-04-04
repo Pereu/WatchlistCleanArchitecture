@@ -2,7 +2,7 @@ package com.watchlist.presentation.ui.registration.login
 
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.domain.model.User
-import com.watchlist.domain.model_params.UserLoginParams
+import com.watchlist.domain.params.UserLoginParams
 import com.watchlist.presentation.ui.global.BasePresenter
 import com.watchlist.presentation.ui.registration.login.view.LoginView
 import rx.lang.kotlin.FunctionSubscriber
@@ -15,14 +15,38 @@ import javax.inject.Inject
 class LoginPresenter <V : LoginView>
 @Inject constructor(private val userInteractor: UserInteractor) : BasePresenter<V>() {
 
-    private var isEmail = false
+
     private var isPassword = false
+    private var isEmail = false
 
     override fun viewIsReady() {
-        if (userInteractor.isUserAlreadyExist()) getView()?.showHome() else getView()?.blockButton()
+        if (userInteractor.isUserAlreadyExist())
+                getView()?.showHome()
+            else
+                getView()?.blockButton()
     }
 
     fun validEmail(mail: String) {
+//        android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches().let {
+//            if(it){
+//
+//            } else {
+//
+//            }
+//        }
+//        if(isEmail){
+//
+//        } else {
+//
+//        }
+//        mail.takeIf {
+//            android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches()
+//        }?.let {
+//            isEmail = true
+//            getView()?.emailSuccess()
+//        }
+
+
        if (mail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
             isEmail = false
            getView()?.emailError()

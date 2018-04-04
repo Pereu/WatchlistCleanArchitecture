@@ -40,6 +40,6 @@ class MovieRestApi @Inject constructor()  {
     }
 
     fun getInCinemaMovies(token: String, take: Int, skip: Int): Observable<InCinemaMovie> {
-        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", "28.03.2018", true)
+        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", "02.04.2018", true)
     }
 }

@@ -15,7 +15,6 @@ class HomePresenter<V : HomeView>
 @Inject
 constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V>() {
 
-
     private var take = 10
     private var skip = 0
 
@@ -29,7 +28,7 @@ constructor(private val movieInteractor: InCinemaInteractor) : BasePresenter<V>(
         skip += take
         movieInteractor.buildUseCaseObservableObject(FunctionSubscriber<InCinemaMovie>()
                 .onNext { getView()?.showList(it) }
-                .onError { getView()?.showError(it) } )
+                .onError { getView()?.showError(it) })
     }
 
     override fun viewIsGone() {

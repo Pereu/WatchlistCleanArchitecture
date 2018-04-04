@@ -3,8 +3,8 @@ package com.watchlist.data.repository.user_datasourse
 import com.watchlist.data.db.DBHelper
 import com.watchlist.data.entity.UserEntity
 import com.watchlist.data.network.user.UserRestApi
-import com.watchlist.domain.model_params.UserLoginParams
-import com.watchlist.domain.model_params.UserSignUpParams
+import com.watchlist.domain.params.UserLoginParams
+import com.watchlist.domain.params.UserSignUpParams
 import rx.Observable
 
 /**

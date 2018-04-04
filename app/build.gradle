@@ -37,7 +37,7 @@ kapt {
 
 ext {
     support = "27.1.0"
-    dagger = "2.13"
+    dagger = "2.14.1"
     retrofit = "2.0.2"
     anko_version = "0.10.4"
 }
@@ -85,6 +85,9 @@ dependencies {
 
     //BottomNavigation
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
+
+    //ExpansionPanel
+    implementation 'com.github.florent37:expansionpanel:1.1.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

@@ -64,7 +64,7 @@ class HomeTabFragment : BaseSupportFragment(), HomeView {
     }
 
     private fun fillDotes() {
-        dotsCount = adapter?.count!!
+        dotsCount = adapter?.count ?: 0
         for (i in 0 until dotsCount) {
             dots.add(i, ImageView(context))
             setNonActiveDotes(i)

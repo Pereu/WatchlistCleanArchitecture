@@ -1,4 +1,4 @@
-package com.watchlist.domain.model_params
+package com.watchlist.domain.params
 
 /**
  * Created by alexanderpereu on 30.01.2018.

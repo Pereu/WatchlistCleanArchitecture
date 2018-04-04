@@ -1,15 +1,14 @@
 package com.watchlist.presentation.extension
 
 import android.annotation.SuppressLint
-import android.app.Fragment
-import android.app.FragmentManager
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import com.watchlist.R
 
 /**
  * Created by alexanderpereu on 22.01.2018.
  */
-
 
 @SuppressLint("ResourceType")
 fun FragmentManager.addFragment(fragment: Fragment, container: Int){

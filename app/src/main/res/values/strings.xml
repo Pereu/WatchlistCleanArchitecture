@@ -15,4 +15,6 @@
     <string name="in_cinema">In cinema</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="create">Create</string>
+    <string name="settings">Settings</string>
+    <string name="notification_settings">Notification settings</string>
 </resources>

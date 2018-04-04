@@ -3,8 +3,8 @@ package com.watchlist.data.repository
 import com.watchlist.data.entity.mapper.UserMapper
 import com.watchlist.data.repository.user_datasourse.UserDataFactory
 import com.watchlist.domain.model.User
-import com.watchlist.domain.model_params.UserLoginParams
-import com.watchlist.domain.model_params.UserSignUpParams
+import com.watchlist.domain.params.UserLoginParams
+import com.watchlist.domain.params.UserSignUpParams
 import com.watchlist.domain.repository.user.UserRepository
 import rx.Observable
 import javax.inject.Inject

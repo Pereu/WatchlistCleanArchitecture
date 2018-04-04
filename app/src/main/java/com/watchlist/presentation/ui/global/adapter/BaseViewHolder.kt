@@ -3,7 +3,6 @@ package com.watchlist.presentation.ui.global.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-
 /**
  * Created by alexanderpereu on 05.02.2018.
  */

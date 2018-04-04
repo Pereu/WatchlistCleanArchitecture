@@ -33,7 +33,7 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_on_boarding, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         presenter.onAttach(this)
@@ -43,7 +43,7 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
 
     private fun goToHome() {
         startActivity(Intent(activity, MainActivity::class.java))
-        activity.finish()
+        activity?.finish()
     }
 
     private fun initAdapter() {

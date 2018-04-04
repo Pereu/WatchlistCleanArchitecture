@@ -16,7 +16,6 @@ import com.watchlist.presentation.ui.registration.login.view.LoginView
 import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
 import com.watchlist.presentation.ui.registration.signup.SignUpPresenter
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
 
 /**
@@ -32,7 +31,7 @@ class SignUpFragment : BaseFragment(), LoginView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_sign_in, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.onAttach(this)
         fragment_sign_up_user_email_input.onTextChanged { presenter.validEmail(it)}
@@ -40,7 +39,7 @@ class SignUpFragment : BaseFragment(), LoginView {
         fragment_sign_up_user_name_input.onTextChanged { presenter.validName(it)}
         fragment_sign_up_btn.setOnClickListener { presenter.signUp(fragment_sign_up_user_email_input.text.toString(),
                 fragment_sign_up_user_password_input.text.toString(), fragment_sign_up_user_name_input.text.toString(), checkInternet() ) }
-        main_app_bar_arrow.setOnClickListener { fragmentManager.removeFragment( this) }
+        main_app_bar_arrow.setOnClickListener { fragmentManager?.removeFragment( this) }
 
     }
 
@@ -49,7 +48,7 @@ class SignUpFragment : BaseFragment(), LoginView {
     }
 
     override fun showLoading() {
-        progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
+//        progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
     }
     override fun blockButton() {
         fragment_sign_up_btn.block(presenter.isValid())
@@ -84,8 +83,8 @@ class SignUpFragment : BaseFragment(), LoginView {
 
     override fun showSuccess(it: User) {
         progressDialog?.dismiss()
-        fragmentManager.clearAllBackStack()
-        fragmentManager.addFragment(OnBoardingFragment(), R.id.activity_login_container)
+        fragmentManager?.clearAllBackStack()
+        fragmentManager?.addFragment(OnBoardingFragment(), R.id.activity_login_container)
     }
 
     override fun showError(error: Throwable) {
@@ -95,7 +94,7 @@ class SignUpFragment : BaseFragment(), LoginView {
 
     override fun showHome() {
         startActivity(Intent(activity, MainActivity::class.java))
-        activity.finish()
+        activity?.finish()
     }
     override fun showLoading(isLoading: Boolean) {
 
@@ -105,6 +104,4 @@ class SignUpFragment : BaseFragment(), LoginView {
         presenter.onDetach()
         super.onDestroy()
     }
-
-
 }

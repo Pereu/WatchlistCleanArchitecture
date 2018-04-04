@@ -19,7 +19,6 @@ import com.watchlist.presentation.ui.registration.login.LoginPresenter
 import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment
 import com.watchlist.presentation.ui.registration.signup.view.SignUpFragment
 import kotlinx.android.synthetic.main.fragment_login.*
-import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
 
 /**
@@ -40,7 +39,7 @@ class LoginFragment : BaseFragment(), LoginView {
         fragment_login_user_email_input.onTextChanged { presenter.validEmail(it)}
         fragment_login_user_password_input.onTextChanged { presenter.validPassword(it)}
         fragment_login_btn.setOnClickListener { presenter.login(fragment_login_user_email_input.text.toString(), fragment_login_user_password_input.text.toString(), checkInternet() ) }
-        fragment_login_reg_btn.setOnClickListener { fragmentManager.addFragment(SignUpFragment(), R.id.activity_login_container) }
+        fragment_login_reg_btn.setOnClickListener { fragmentManager?.addFragment(SignUpFragment(), R.id.activity_login_container) }
     }
 
     override fun showMessage(message: String) {
@@ -48,7 +47,7 @@ class LoginFragment : BaseFragment(), LoginView {
 
     }
     override fun showLoading() {
-        progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
+       // progressDialog = indeterminateProgressDialog(resources.getString(R.string.please_wait))
     }
     override fun blockButton() {
         fragment_login_btn.block(presenter.isValid())
@@ -76,7 +75,7 @@ class LoginFragment : BaseFragment(), LoginView {
 
     override fun showSuccess(it: User) {
         progressDialog?.dismiss()
-        fragmentManager.replaceFragment(OnBoardingFragment(), R.id.activity_login_container)
+        activity?.supportFragmentManager?.replaceFragment(OnBoardingFragment(), R.id.activity_login_container)
     }
 
     override fun showError(error: Throwable) {
@@ -86,7 +85,7 @@ class LoginFragment : BaseFragment(), LoginView {
 
     override fun showHome() {
         startActivity(Intent(activity, MainActivity::class.java))
-        activity.finish()
+        activity?.finish()
     }
     override fun nameError() {}
 

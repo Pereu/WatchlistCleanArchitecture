@@ -2,7 +2,7 @@ package com.watchlist.presentation.ui.registration.signup
 
 import com.watchlist.domain.interactor.user.UserInteractor
 import com.watchlist.domain.model.User
-import com.watchlist.domain.model_params.UserSignUpParams
+import com.watchlist.domain.params.UserSignUpParams
 import com.watchlist.presentation.ui.global.BasePresenter
 import com.watchlist.presentation.ui.registration.login.view.LoginView
 import rx.lang.kotlin.FunctionSubscriber
