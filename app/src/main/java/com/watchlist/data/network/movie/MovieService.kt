@@ -6,7 +6,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
-import rx.Observable
 
 /**
  * Created by alexanderpereu on 06.02.2018.
@@ -20,7 +19,7 @@ interface MovieService {
                           @Query("skip") skip: Int,
                           @Query("KeyWords")  tags : String,
                           @Query("SearchDate")  searchDate : String,
-                          @Query("IsSingleChoice") isSingleChoice : Boolean) : Observable<InCinemaMovie>
+                          @Query("IsSingleChoice") isSingleChoice : Boolean) : Call<InCinemaMovie>
 
     @GET("Movies/GetOnboarding/Get")
     fun getNewOnBoardingMovie(@Header("X-Token") token: String,

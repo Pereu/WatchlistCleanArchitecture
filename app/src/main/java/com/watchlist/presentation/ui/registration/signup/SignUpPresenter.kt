@@ -65,7 +65,7 @@ class SignUpPresenter  <V : LoginView>
             userInteractor.userSignUpParams = user
             userInteractor.executeSignUp(FunctionSubscriber<User>()
                     .onNext { getView()?.showSuccess(it) }
-                    .onError { getView()?.showError(it) })
+                    .onError { it.message?.let { it1 -> getView()?.showError(it1) } })
         } else {
             getView()?.showMessage("No internet")
         }

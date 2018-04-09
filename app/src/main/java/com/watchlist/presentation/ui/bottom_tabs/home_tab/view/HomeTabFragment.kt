@@ -56,8 +56,8 @@ class HomeTabFragment : BaseSupportFragment(), HomeView {
     override fun showLoading(isLoading: Boolean) {
     }
 
-    override fun showError(error: Throwable) {
-        error.message?.let { longToast(it) }
+    override fun showError(errorMessage: String) {
+        longToast(errorMessage)
     }
 
     override fun showMessage(message: String) {

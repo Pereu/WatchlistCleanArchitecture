@@ -7,7 +7,7 @@ package com.watchlist.presentation.ui.global.view
 interface BaseView {
 
     fun showLoading(isLoading: Boolean)
-    fun showError(error: Throwable)
+    fun showError(errorMessage: String)
     fun showMessage(message: String)
 
 }

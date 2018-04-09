@@ -10,25 +10,16 @@ import javax.inject.Inject
  */
 
 class OnBoardingPresenter  <V : OnBoardingView>
-@Inject constructor(private val movieInteractor: OnBoardingInteractor): BasePresenter<V>() {
-
-    private var take = 10
-    private var skip = 0
+@Inject constructor(private val onBoardingInteractor: OnBoardingInteractor): BasePresenter<V>() {
 
     override fun viewIsReady() {
         getView()?.showLoading(true)
+        loadMovies()
     }
 
     fun loadMovies() {
-        movieInteractor.take = take
-        movieInteractor.skip = skip
-        skip += take
-
-        movieInteractor.getOnBoarding({getView()?.showList(it)}, {getView()?.showError(it)})
-
+        onBoardingInteractor.getOnBoarding({getView()?.showList(it)}, {getView()?.showError(it)})
     }
 
-    override fun viewIsGone() {
-
-    }
+    override fun viewIsGone() {}
 }

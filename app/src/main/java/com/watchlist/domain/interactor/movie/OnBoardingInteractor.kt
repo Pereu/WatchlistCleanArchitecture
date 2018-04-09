@@ -13,13 +13,14 @@ import javax.inject.Inject
 class OnBoardingInteractor
 @Inject constructor(private val movieRepository: MovieRepository) {
 
-    var take = 0
-    var skip = 0
+    private var take = 10
+    private var skip = 0
 
     private var success: ((ArrayList<OnBoardingMovie>) -> Unit)? = null
-    private var failure: ((Throwable) -> Unit)? = null
+    private var failure: ((String) -> Unit)? = null
 
-    fun getOnBoarding(onSuccess: (ArrayList<OnBoardingMovie>) -> Unit, onFailure: (Throwable) -> Unit) : Call<ArrayList<OnBoardingMovie>> {
+    fun getOnBoarding(onSuccess: (ArrayList<OnBoardingMovie>) -> Unit, onFailure: (String) -> Unit) : Call<ArrayList<OnBoardingMovie>> {
+        skip += take
         success = onSuccess
         failure = onFailure
         val call = movieRepository.getNewOnBoarding(take, skip)
@@ -34,8 +35,8 @@ class OnBoardingInteractor
             }
         }
 
-        override fun onFailure(call: Call<ArrayList<OnBoardingMovie>>, t: Throwable) {
-                failure?.invoke(t)
+        override fun onFailure(call: Call<ArrayList<OnBoardingMovie>>, error: Throwable) {
+            error.message?.let { failure?.invoke(it) }
         }
     }
 }

@@ -9,7 +9,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import rx.Observable
 import javax.inject.Inject
 
 /**
@@ -34,8 +33,8 @@ class MovieRestApi @Inject constructor()  {
         return interceptor
     }
 
-    fun getInCinemaMovies(token: String, take: Int, skip: Int): Observable<InCinemaMovie> {
-        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", "04.04.2018", true)
+    fun getInCinemaMovies(token: String, take: Int, skip: Int, todayDate: String): Call<InCinemaMovie> {
+        return service.getInCinemaMovies(token, "Bergen", take, skip, "in-cinema", todayDate, true)
     }
 
     fun getNewOnBoarding(token: String, take: Int, skip: Int): Call<ArrayList<OnBoardingMovie>> {

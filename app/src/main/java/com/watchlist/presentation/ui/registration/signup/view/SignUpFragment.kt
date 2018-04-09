@@ -87,9 +87,9 @@ class SignUpFragment : BaseFragment(), LoginView {
         fragmentManager?.addFragment(OnBoardingFragment(), R.id.activity_login_container)
     }
 
-    override fun showError(error: Throwable) {
+    override fun showError(errorMessage: String) {
         progressDialog?.dismiss()
-        error.message?.let { it -> longToast(it) }
+        longToast(errorMessage)
     }
 
     override fun showHome() {

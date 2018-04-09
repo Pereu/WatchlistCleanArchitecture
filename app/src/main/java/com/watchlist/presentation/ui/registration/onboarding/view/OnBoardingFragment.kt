@@ -37,7 +37,6 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         presenter.onAttach(this)
-        presenter.loadMovies()
         fragment_on_boarding_btn.setOnClickListener { goToHome() }
     }
 
@@ -70,9 +69,9 @@ class OnBoardingFragment : BaseFragment(), OnBoardingView {
         adapter?.setList(list)
     }
 
-    override fun showError(error: Throwable) {
+    override fun showError(errorMessage: String) {
         showLoading(false)
-        error.message?.let { it -> longToast(it) }
+        longToast(errorMessage)
     }
 
     override fun showMessage(message: String) {}

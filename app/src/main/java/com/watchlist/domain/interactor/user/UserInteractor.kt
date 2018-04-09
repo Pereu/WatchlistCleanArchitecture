@@ -29,4 +29,5 @@ class UserInteractor @Inject constructor(threadExecutor: ThreadExecutor, postExe
 
     override fun buildUseCaseObservableSign(): Observable<User> {
         return this.userRepository.signUpUser(userSignUpParams)    }
+
 }
