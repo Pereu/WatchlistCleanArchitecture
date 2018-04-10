@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.bottom_tabs.search_tab
+package com.watchlist.presentation.ui.bottomTabs.search_tab
 
 
 import android.os.Bundle

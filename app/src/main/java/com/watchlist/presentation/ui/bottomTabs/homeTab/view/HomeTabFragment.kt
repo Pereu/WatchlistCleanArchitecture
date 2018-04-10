@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.bottom_tabs.home_tab.view
+package com.watchlist.presentation.ui.bottomTabs.homeTab.view
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -11,8 +11,8 @@ import com.watchlist.R
 import com.watchlist.domain.model.InCinemaMovie
 import com.watchlist.presentation.extension.addParams
 import com.watchlist.presentation.extension.changePosition
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.HomePresenter
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.adapter.SlideViewPagerAdapter
+import com.watchlist.presentation.ui.bottomTabs.homeTab.HomePresenter
+import com.watchlist.presentation.ui.bottomTabs.homeTab.adapter.SlideViewPagerAdapter
 import com.watchlist.presentation.ui.global.view.BaseSupportFragment
 import kotlinx.android.synthetic.main.fragment_tab_home.*
 import javax.inject.Inject

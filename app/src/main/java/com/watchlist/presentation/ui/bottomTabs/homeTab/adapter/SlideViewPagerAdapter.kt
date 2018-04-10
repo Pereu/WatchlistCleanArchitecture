@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.bottom_tabs.home_tab.adapter
+package com.watchlist.presentation.ui.bottomTabs.homeTab.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context

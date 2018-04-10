@@ -1,7 +1,7 @@
-package com.watchlist.presentation.ui.bottom_tabs.home_tab
+package com.watchlist.presentation.ui.bottomTabs.homeTab
 
 import com.watchlist.domain.interactor.movie.InCinemaInteractor
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.view.HomeView
+import com.watchlist.presentation.ui.bottomTabs.homeTab.view.HomeView
 import com.watchlist.presentation.ui.global.BasePresenter
 import javax.inject.Inject
 

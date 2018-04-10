@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.bottom_tabs
+package com.watchlist.presentation.ui.bottomTabs
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

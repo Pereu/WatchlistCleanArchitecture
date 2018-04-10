@@ -19,13 +19,12 @@ class InCinemaInteractor
     private var success: ((InCinemaMovie) -> Unit)? = null
     private var failure: ((String) -> Unit)? = null
 
-    fun getInCinemaMovies(onSuccess: (InCinemaMovie) -> Unit, onFailure: (String) -> Unit) : Call<InCinemaMovie> {
+    fun getInCinemaMovies(onSuccess: (InCinemaMovie) -> Unit, onFailure: (String) -> Unit)  {
         skip += take
         success = onSuccess
         failure = onFailure
         val call = movieRepository.getInCinemaMovies(take, skip, todayDate)
         call.enqueue(result)
-        return call
     }
 
     private val result = object : Callback<InCinemaMovie> {

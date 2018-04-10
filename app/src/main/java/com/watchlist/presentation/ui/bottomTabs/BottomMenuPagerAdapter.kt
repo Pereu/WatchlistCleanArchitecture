@@ -1,11 +1,11 @@
-package com.watchlist.presentation.ui.bottom_tabs
+package com.watchlist.presentation.ui.bottomTabs
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.watchlist.presentation.ui.bottom_tabs.account_tab.AccountTabFragment
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.view.HomeTabFragment
-import com.watchlist.presentation.ui.bottom_tabs.search_tab.SearchTabFragment
+import com.watchlist.presentation.ui.bottomTabs.accountTab.AccountTabFragment
+import com.watchlist.presentation.ui.bottomTabs.homeTab.view.HomeTabFragment
+import com.watchlist.presentation.ui.bottomTabs.search_tab.SearchTabFragment
 import java.util.*
 
 /**

@@ -13,7 +13,7 @@ import com.watchlist.presentation.extension.addFragment
 import com.watchlist.presentation.extension.block
 import com.watchlist.presentation.extension.onTextChanged
 import com.watchlist.presentation.extension.replaceFragment
-import com.watchlist.presentation.ui.bottom_tabs.MainActivity
+import com.watchlist.presentation.ui.bottomTabs.MainActivity
 import com.watchlist.presentation.ui.global.view.BaseFragment
 import com.watchlist.presentation.ui.registration.login.LoginPresenter
 import com.watchlist.presentation.ui.registration.onboarding.view.OnBoardingFragment

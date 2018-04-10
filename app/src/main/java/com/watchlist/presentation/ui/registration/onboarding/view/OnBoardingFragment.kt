@@ -10,7 +10,7 @@ import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.OnBoardingMovie
 import com.watchlist.presentation.extension.visible
-import com.watchlist.presentation.ui.bottom_tabs.MainActivity
+import com.watchlist.presentation.ui.bottomTabs.MainActivity
 import com.watchlist.presentation.ui.global.BaseOnScrollListener
 import com.watchlist.presentation.ui.global.view.BaseFragment
 import com.watchlist.presentation.ui.registration.onboarding.OnBoardingPresenter

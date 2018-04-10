@@ -1,7 +1,6 @@
 package com.watchlist.presentation.di.modules.fragment_module
 
 import com.watchlist.data.db.DBHelper
-import com.watchlist.data.entity.mapper.MovieMapper
 import com.watchlist.data.network.movie.MovieRestApi
 import com.watchlist.data.repository.MovieDataRepository
 import com.watchlist.data.repository.movie_datasourse.MovieDataFactory
@@ -19,6 +18,6 @@ class OnBoardingModule {
 
     @Provides
     fun provideOnBoardingPresenter() : OnBoardingPresenter<OnBoardingView> {
-        return OnBoardingPresenter(OnBoardingInteractor(MovieDataRepository(MovieMapper(), MovieDataFactory(MovieRestApi(), DBHelper()))))
+        return OnBoardingPresenter(OnBoardingInteractor(MovieDataRepository(MovieDataFactory(MovieRestApi(), DBHelper()))))
     }
 }

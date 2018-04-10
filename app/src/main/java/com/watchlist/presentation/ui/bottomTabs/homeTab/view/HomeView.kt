@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.bottom_tabs.home_tab.view
+package com.watchlist.presentation.ui.bottomTabs.homeTab.view
 
 import com.watchlist.domain.model.InCinemaMovie
 import com.watchlist.presentation.ui.global.view.BaseView

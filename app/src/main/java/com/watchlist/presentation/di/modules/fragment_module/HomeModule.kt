@@ -6,8 +6,8 @@ import com.watchlist.data.network.movie.MovieRestApi
 import com.watchlist.data.repository.MovieDataRepository
 import com.watchlist.data.repository.movie_datasourse.MovieDataFactory
 import com.watchlist.domain.interactor.movie.InCinemaInteractor
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.HomePresenter
-import com.watchlist.presentation.ui.bottom_tabs.home_tab.view.HomeView
+import com.watchlist.presentation.ui.bottomTabs.homeTab.HomePresenter
+import com.watchlist.presentation.ui.bottomTabs.homeTab.view.HomeView
 import dagger.Module
 import dagger.Provides
 import java.text.SimpleDateFormat

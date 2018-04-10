@@ -19,13 +19,12 @@ class OnBoardingInteractor
     private var success: ((ArrayList<OnBoardingMovie>) -> Unit)? = null
     private var failure: ((String) -> Unit)? = null
 
-    fun getOnBoarding(onSuccess: (ArrayList<OnBoardingMovie>) -> Unit, onFailure: (String) -> Unit) : Call<ArrayList<OnBoardingMovie>> {
+    fun getOnBoarding(onSuccess: (ArrayList<OnBoardingMovie>) -> Unit, onFailure: (String) -> Unit)  {
         skip += take
         success = onSuccess
         failure = onFailure
         val call = movieRepository.getNewOnBoarding(take, skip)
         call.enqueue(result)
-        return call
     }
 
     private val result = object : Callback<ArrayList<OnBoardingMovie>> {

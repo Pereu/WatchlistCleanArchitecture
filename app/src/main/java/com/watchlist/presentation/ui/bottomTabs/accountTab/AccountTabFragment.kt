@@ -1,4 +1,4 @@
-package com.watchlist.presentation.ui.bottom_tabs.account_tab
+package com.watchlist.presentation.ui.bottomTabs.accountTab
 
 import android.content.Intent
 import android.os.Bundle
