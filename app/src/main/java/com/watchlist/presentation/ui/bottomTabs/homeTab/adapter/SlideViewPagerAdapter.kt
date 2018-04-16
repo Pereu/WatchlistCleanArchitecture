@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.item_home.view.*
 class SlideViewPagerAdapter : PagerAdapter() {
 
     private var images = arrayListOf<Item>()
+    private var click: ((Item) -> Unit?)? = null
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
@@ -44,6 +45,9 @@ class SlideViewPagerAdapter : PagerAdapter() {
         bindImage(position, view)
         view.item_home_title.text = images[position].Title
         view.item_home_subtitle.text = images[position].Subtitle
+        view.item_home_in_cinema_image.setOnClickListener {
+            click?.invoke(this.images[position])
+        }
     }
 
     private fun bindImage(position: Int, view: View) {
@@ -63,8 +67,10 @@ class SlideViewPagerAdapter : PagerAdapter() {
         vp.removeView(view)
     }
 
-    fun setList (list: ArrayList<Item>) {
+
+    fun setList (list: ArrayList<Item>, onClick: (Item) -> Unit) {
         this.images.addAll(list)
+        this.click = onClick
         notifyDataSetChanged()
     }
 }

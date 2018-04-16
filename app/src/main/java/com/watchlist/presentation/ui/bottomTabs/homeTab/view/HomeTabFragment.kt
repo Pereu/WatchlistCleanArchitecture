@@ -9,10 +9,13 @@ import android.widget.ImageView
 import com.pawegio.kandroid.longToast
 import com.watchlist.R
 import com.watchlist.domain.model.InCinemaMovie
+import com.watchlist.domain.model.Item
+import com.watchlist.presentation.extension.addFragment
 import com.watchlist.presentation.extension.addParams
 import com.watchlist.presentation.extension.changePosition
 import com.watchlist.presentation.ui.bottomTabs.homeTab.HomePresenter
 import com.watchlist.presentation.ui.bottomTabs.homeTab.adapter.SlideViewPagerAdapter
+import com.watchlist.presentation.ui.detail.MovieDetailFragment
 import com.watchlist.presentation.ui.global.view.BaseSupportFragment
 import kotlinx.android.synthetic.main.fragment_tab_home.*
 import javax.inject.Inject
@@ -47,13 +50,21 @@ class HomeTabFragment : BaseSupportFragment(), HomeView {
         }
     }
 
+    private fun openDetail(item: Item) {
+        val fragment = MovieDetailFragment()
+        fragment.setItem(item)
+        fragmentManager?.addFragment(fragment, R.id.activity_tabs_container)
+
+    }
+
     override fun showList(list: InCinemaMovie) {
         fragment_home_progress_bar.visibility = View.GONE
-        adapter?.setList(list.Items)
+        adapter?.setList(list.Items, {openDetail(it)})
         fillDotes()
     }
 
     override fun showLoading(isLoading: Boolean) {
+
     }
 
     override fun showError(errorMessage: String) {

@@ -10,13 +10,16 @@ import com.watchlist.R
  * Created by alexanderpereu on 22.01.2018.
  */
 
-@SuppressLint("ResourceType")
+@SuppressLint("ResourceType", "CommitTransaction")
 fun FragmentManager.addFragment(fragment: Fragment, container: Int){
     val fragmentTransaction = this.beginTransaction()
-    fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, 0)
-    fragmentTransaction.add(container, fragment)
-    fragmentTransaction.addToBackStack(null)
-    fragmentTransaction.commit()
+    fragmentTransaction.apply {
+        setCustomAnimations(R.anim.slide_in_right, 0)
+        add(container, fragment)
+        addToBackStack(null)
+        commit()
+    }
+
 }
 
 @SuppressLint("ResourceType")
