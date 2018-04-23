@@ -17,11 +17,22 @@
         app:layout_constraintTop_toTopOf="parent"
         card_view:cardCornerRadius="6dp">
 
+        <io.supercharge.shimmerlayout.ShimmerLayout
+            android:id="@+id/item_on_boarding_poster_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_animation_duration="1600"
+            app:shimmer_color="@color/colorWhite">
+
     <ImageView
         android:id="@+id/item_on_boarding_poster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        card_view:ignore="ContentDescription"
+        android:background="@color/colorBackground"/>
+
+    </io.supercharge.shimmerlayout.ShimmerLayout>
 
 </android.support.v7.widget.CardView>
 

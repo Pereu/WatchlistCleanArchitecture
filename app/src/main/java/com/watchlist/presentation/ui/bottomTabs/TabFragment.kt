@@ -14,16 +14,26 @@ import java.util.*
 
 class TabFragment : Fragment(), AHBottomNavigation.OnTabSelectedListener {
 
-    private val bottomNavigationItems = ArrayList<AHBottomNavigationItem>()
+    private var bottomNavigationItems = ArrayList<AHBottomNavigationItem>()
     private var adapter: BottomMenuPagerAdapter? = null
     private var fragment: Fragment? = null
+    private var isLoad = false
+    private var tabview: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return  inflater.inflate(R.layout.fragment_tab, container, false)
+        if(tabview == null){
+            tabview = inflater.inflate(R.layout.fragment_tab, container, false)
+        }
+
+        return tabview
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initBottomMenu()
+        if(!isLoad) {
+            isLoad = true
+            initBottomMenu()
+        }
     }
 
     private fun initBottomMenu() {
@@ -35,7 +45,7 @@ class TabFragment : Fragment(), AHBottomNavigation.OnTabSelectedListener {
         bottomNavigationItems.add(search)
         bottomNavigationItems.add(account)
 
-        adapter = fragmentManager?.let { BottomMenuPagerAdapter(it) }
+        adapter = childFragmentManager.let { BottomMenuPagerAdapter(it) }
         fragment_main_view_pager.adapter = adapter
 
         fragment = adapter?.getItem(0)
@@ -57,4 +67,20 @@ class TabFragment : Fragment(), AHBottomNavigation.OnTabSelectedListener {
         fragment_main_view_pager.setCurrentItem(position, true)
         return true
     }
+
+    override fun onResume() {
+        super.onResume()
+        val i  = 0
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        val i  = 0
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val i  = 0
+    }
+
 }

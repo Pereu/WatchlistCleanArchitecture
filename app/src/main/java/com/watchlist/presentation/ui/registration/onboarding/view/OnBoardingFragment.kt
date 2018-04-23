@@ -16,6 +16,7 @@ import com.watchlist.presentation.ui.global.view.BaseFragment
 import com.watchlist.presentation.ui.registration.onboarding.OnBoardingPresenter
 import com.watchlist.presentation.ui.registration.onboarding.adapter.OnBoardingAdapter
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
+import kotlinx.android.synthetic.main.item_on_boarding.*
 import javax.inject.Inject
 
 /**

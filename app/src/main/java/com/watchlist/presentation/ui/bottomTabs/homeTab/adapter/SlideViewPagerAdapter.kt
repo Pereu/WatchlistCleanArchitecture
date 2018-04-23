@@ -3,6 +3,7 @@ package com.watchlist.presentation.ui.bottomTabs.homeTab.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewCompat
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.watchlist.R
 import com.watchlist.domain.model.Item
+import com.watchlist.presentation.extension.getCurrentItem
 import kotlinx.android.synthetic.main.item_home.view.*
 
 /**
@@ -19,7 +21,7 @@ import kotlinx.android.synthetic.main.item_home.view.*
 class SlideViewPagerAdapter : PagerAdapter() {
 
     private var images = arrayListOf<Item>()
-    private var click: ((Item) -> Unit?)? = null
+    private var click: ((Item, View) -> Unit)? = null
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
@@ -45,19 +47,17 @@ class SlideViewPagerAdapter : PagerAdapter() {
         bindImage(position, view)
         view.item_home_title.text = images[position].Title
         view.item_home_subtitle.text = images[position].Subtitle
+        ViewCompat.setTransitionName(view.item_home_in_cinema_image, "${position}detail")
+
         view.item_home_in_cinema_image.setOnClickListener {
-            click?.invoke(this.images[position])
+            click?.invoke(this.images[position], it)
         }
     }
 
     private fun bindImage(position: Int, view: View) {
-        var index = 0
-        if (images[position].Backdrops.size > 4) {
-            index = images[position].Backdrops.size - 3
-        }
-
+        val index = 0
         Glide.with(view.context)
-                .load(images[position].Backdrops[index].Url)
+                .load(images[position].Backdrops[index.getCurrentItem(images[position].Backdrops.size)].Url)
                 .into(view.item_home_in_cinema_image)
     }
 
@@ -68,7 +68,7 @@ class SlideViewPagerAdapter : PagerAdapter() {
     }
 
 
-    fun setList (list: ArrayList<Item>, onClick: (Item) -> Unit) {
+    fun setList (list: ArrayList<Item>, onClick: (Item, View) -> Unit) {
         this.images.addAll(list)
         this.click = onClick
         notifyDataSetChanged()

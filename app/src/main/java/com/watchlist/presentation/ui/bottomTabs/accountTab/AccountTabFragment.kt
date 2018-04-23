@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.watchlist.R
 import com.watchlist.presentation.extension.addFragment
+import com.watchlist.presentation.extension.replaceFragment
 import com.watchlist.presentation.ui.settings.SettingsFragment
 import kotlinx.android.synthetic.main.fragment_tab_account.*
 
@@ -21,7 +22,7 @@ class AccountTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragment_account_toolbar_settings.setOnClickListener {
-            fragmentManager?.addFragment(SettingsFragment(), R.id.activity_tabs_container)
+            activity?.supportFragmentManager?.addFragment(SettingsFragment(), R.id.activity_tabs_container)
         }
     }
 }
