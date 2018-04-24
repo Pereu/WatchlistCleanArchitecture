@@ -18,9 +18,9 @@ constructor(private val interactor: InCinemaInteractor) : BasePresenter<V>() {
     }
 
     private fun getCinemaMovie() {
+        getView()?.showLoading(true)
         interactor.getInCinemaMovies({getView()?.showList(it)}, {getView()?.showError(it)})
     }
 
-    override fun viewIsGone() {
-    }
+    override fun viewIsGone() {}
 }

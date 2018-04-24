@@ -16,6 +16,7 @@ class Item {
     val ShowtimesStrList: List<String>? = null
     val Duration: String? = null
     val Backdrops: ArrayList<BackdropImages> = arrayListOf()
+    val Posters: ArrayList<PosterImages> = arrayListOf()
     val Backdrop = ""
 //    @SerializedName("Posters")
 //    @Expose

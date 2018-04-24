@@ -13,35 +13,38 @@ import com.watchlist.R
  */
 
 @SuppressLint("ResourceType", "CommitTransaction")
-fun FragmentManager.addFragment(fragment: Fragment, container: Int){
+fun FragmentManager.addFragment(fragment: Fragment, container: Int) {
+    val tag = fragment::class.java.simpleName
     val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.apply {
         setCustomAnimations(R.anim.slide_in_right, 0)
-        add(container, fragment)
-        addToBackStack(null)
+        add(container, fragment, tag)
+        addToBackStack(tag)
         commitAllowingStateLoss()
     }
 }
 
 @SuppressLint("ResourceType", "CommitTransaction")
-fun FragmentManager.replaceFragment(fragment: Fragment, container: Int){
+fun FragmentManager.replaceFragment(fragment: Fragment, container: Int) {
+    val tag = fragment::class.java.simpleName
     val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.apply {
         setCustomAnimations(R.anim.slide_in_down, 0)
-        addToBackStack(null)
-        replace(container, fragment)
+        replace(container, fragment, tag)
+        addToBackStack(tag)
         commit()
     }
-
 }
 
 @SuppressLint("ResourceType", "CommitTransaction")
-fun FragmentManager.replaceFragmentWithSharedTransition(fragment: Fragment, container: Int, view: View){
+fun FragmentManager.replaceFragmentWithSharedTransition(fragment: Fragment, container: Int, viewBackdrop: View, viewPoster: View) {
+    val tag = fragment::class.java.simpleName
     val fragmentTransaction = this.beginTransaction()
     fragmentTransaction.apply {
-        addSharedElement(view,  ViewCompat.getTransitionName(view))
-        addToBackStack(null)
-        replace(container, fragment)
+        addSharedElement(viewBackdrop,  ViewCompat.getTransitionName(viewBackdrop))
+        addSharedElement(viewPoster,  ViewCompat.getTransitionName(viewPoster))
+        addToBackStack(tag)
+        replace(container, fragment, tag)
         commitAllowingStateLoss()
     }
 

@@ -3,7 +3,6 @@ package com.watchlist.presentation.ui.bottomTabs.homeTab.view
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
-import android.transition.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import com.watchlist.domain.model.Item
 import com.watchlist.presentation.extension.addParams
 import com.watchlist.presentation.extension.changePosition
 import com.watchlist.presentation.extension.replaceFragmentWithSharedTransition
+import com.watchlist.presentation.extension.visible
 import com.watchlist.presentation.ui.bottomTabs.homeTab.HomePresenter
 import com.watchlist.presentation.ui.bottomTabs.homeTab.adapter.SlideViewPagerAdapter
 import com.watchlist.presentation.ui.detail.MovieDetailFragment
@@ -38,7 +38,7 @@ class HomeTabFragment : BaseSupportFragment(), HomeView {
     private var dotsCount: Int = 0
     private var dots = arrayListOf<ImageView>()
 
-    private var isLoad = false
+    private var isViewExist = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if(homeView == null){
@@ -48,8 +48,8 @@ class HomeTabFragment : BaseSupportFragment(), HomeView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if(!isLoad){
-            isLoad = true
+        if(!isViewExist){
+            isViewExist = true
             presenter.onAttach(this)
             adapter = SlideViewPagerAdapter()
             fragment_home_view_pager.adapter = adapter
@@ -59,54 +59,32 @@ class HomeTabFragment : BaseSupportFragment(), HomeView {
                 }
                 setActiveDotes(it)
             }
-
         }
     }
 
-    private fun openDetail(item: Item, view: View) {
+    private fun openDetail(item: Item, viewBackdrop: View, viewPoster: View) {
         val fragment = MovieDetailFragment()
-        fragment.setItem(item, ViewCompat.getTransitionName(view))
-       // exitTransition = null
-
-//        fragment.sharedElementEnterTransition = DetailsTransition()
-       // fragment.enterTransition = Fade()
-//        exitTransition = Fade()
-//        fragment.sharedElementReturnTransition = DetailsTransition()
-
-       // fragment.sharedElementEnterTransition = AutoTransition()
-
-         activity?.supportFragmentManager?.replaceFragmentWithSharedTransition(fragment, R.id.activity_tabs_container, view)
-    }
-
-    class DetailsTransition : TransitionSet() {
-
-        private fun init() {
-            ordering = TransitionSet.ORDERING_TOGETHER
-            addTransition(ChangeBounds())
-                    .addTransition(ChangeTransform())
-                    .addTransition(ChangeImageTransform())
-        }
-
-        init {
-            init()
-        }
+        fragment.setItem(item, ViewCompat.getTransitionName(viewBackdrop), ViewCompat.getTransitionName(viewPoster))
+        activity?.supportFragmentManager?.replaceFragmentWithSharedTransition(fragment, R.id.activity_tabs_container, viewBackdrop, viewPoster)
     }
 
     override fun showList(list: InCinemaMovie) {
-        fragment_home_progress_bar.visibility = View.GONE
+        showLoading(false)
         adapter?.setList(list.Items, this::openDetail)
         fillDotes()
     }
 
     override fun showLoading(isLoading: Boolean) {
-
+        fragment_home_progress_bar.visible = isLoading
     }
 
     override fun showError(errorMessage: String) {
+        showLoading(false)
         longToast(errorMessage)
     }
 
     override fun showMessage(message: String) {
+        longToast(message)
     }
 
     private fun fillDotes() {
